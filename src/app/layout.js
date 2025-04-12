@@ -43,12 +43,45 @@ export default function RootLayout({ children }) {
 
         {/* Favicon */}
         <link rel="icon" href="/logo.png" />
-
+        <link rel="alternate" href="https://stratoslab.vercel.app/" hreflang="en" />
+        <link rel="alternate" href="https://stratoslab.vercel.app/" hreflang="en-US" />
+        <link rel="alternate" href="https://stratoslab.vercel.app/" hreflang="en-GB" />
+        <link rel="alternate" href="https://stratoslab.vercel.app/" hreflang="x-default" />
+        <link rel="canonical" href="https://stratoslab.vercel.app/" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="40x40" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="32x32" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="16x16" href="/logo.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         {/* Calendly Widget CSS */}
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Stratuslab",
+      "url": "https://stratoslab.vercel.app/",
+      "description": "Stratuslab offers premium design and development services trusted by Web3 founders.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Stratuslab",
+        "logo": "https://stratoslab.vercel.app/logo.png",
+      },
+    }),
+  }}
+/>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

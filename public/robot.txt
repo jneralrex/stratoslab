@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stratoslab.vercel.app/sitemap.xml

@@ -512,7 +512,7 @@ export default function Home() {
             </button>
           </div>
           <div className="flex gap-4">
-            <a href={"https://twitter.com/stratos_lab"} target="_blank">
+            <a href={"https://twitter.com/stratos_lab"} target="_blank" aria-label="Visit our Twitter">
               <Image
                 src="/x.png"
                 alt="Twitter"
@@ -521,7 +521,7 @@ export default function Home() {
                 className="cursor-pointer"
               />
             </a>
-            <a href={""} target="_blank">
+            <a href={""} target="_blank" aria-label="Visit our Discord">
               <Image
                 src="/discord.png"
                 alt="Discord"
@@ -531,7 +531,7 @@ export default function Home() {
               />
             </a>
 
-            <a href={""} target="_blank">
+            <a href={""} target="_blank" aria-label="Visit our Telegram">
               <Image
                 src="/telegram.png"
                 alt="Telegram"
@@ -542,7 +542,7 @@ export default function Home() {
             </a>
             <a
               href={"www.linkedin.com.in/stratos-lab-7167b256b"}
-              target="_blank"
+              target="_blank" aria-label="Visit our LinkedIn"
             >
               <Image
                 src="/linkedin.png"
