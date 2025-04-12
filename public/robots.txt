@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://stratoslab.vercel.app
+
+# Sitemaps
+Sitemap: https://stratoslab.vercel.app/sitemap.xml
