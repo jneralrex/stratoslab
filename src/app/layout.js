@@ -33,13 +33,13 @@ export default function RootLayout({ children }) {
         <meta property="og:title" content={metadata.title} />
         <meta property="og:description" content={metadata.description} />
         <meta property="og:image" content="/og-image.png" />
-        <meta property="og:url" content="https://stratoslab.com" />
+        <meta property="og:url" content="https://stratoslab.vercel.app/" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metadata.title} />
         <meta name="twitter:description" content={metadata.description} />
-        <meta name="twitter:image" content="/og-image.png" />
+        <meta name="twitter:image" content="/imagecard.png" />
 
         {/* Favicon */}
         <link rel="icon" href="/logo.png" />
