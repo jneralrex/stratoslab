@@ -144,8 +144,8 @@ export default function Home() {
         setConditional(
           "bg-[#4e3c70] backdrop-blur-lg transition-all mt-[20px] md:w-[90%] md:mx-auto duration-300"
         );
-        setConditionalButton("hidden");
       } else {
+        setConditionalButton("hidden");
         setConditional("bg-transparent md:w-[90%] md:mx-auto duration-300");
       }
 
