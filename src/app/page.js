@@ -113,25 +113,27 @@ export default function Home() {
 
   useEffect(() => {
     if (!calendlyLoaded) return;
+  
+    const currentRef = calendlyRef.current; // Copy the ref value to a local variable
     const script = document.createElement("script");
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
     script.onload = () => {
-      if (window.Calendly && calendlyRef.current) {
+      if (window.Calendly && currentRef) {
         window.Calendly.initInlineWidget({
           url: "https://calendly.com/domicrypt/30min",
-          parentElement: calendlyRef.current,
+          parentElement: currentRef,
           prefill: {},
           utm: {},
         });
       }
     };
     document.body.appendChild(script);
-
+  
     return () => {
       document.body.removeChild(script);
-      if (calendlyRef.current) {
-        calendlyRef.current.innerHTML = "";
+      if (currentRef) {
+        currentRef.innerHTML = ""; // Use the local variable in the cleanup function
       }
     };
   }, [calendlyLoaded]);
@@ -408,7 +410,7 @@ export default function Home() {
               <ul className="text-start text-[22px] mt-4 flex flex-col gap-5 lg:text-[25px] text-[#b2aeb9] font-bold">
                 <li>Looking to quickly develop an MVP?</li>
                 <li>Need expert guidance for your project?</li>
-                <li>Want to ensure your project's success?</li>
+                <li>Want to ensure your project&#39;s success?</li>
               </ul>
             </div>
             <div className="border-2 p-5 flex flex-col justify-center rounded-lg lg:h-[500px] w-full bg-gradient-to-tr from-green-300 via-[#23153c] to-green-300">
