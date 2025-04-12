@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={metadata.title} />
         <meta property="og:description" content={metadata.description} />
-        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:image" content="/imagecard.png" />
         <meta property="og:url" content="https://stratoslab.vercel.app/" />
 
         {/* Twitter */}
@@ -43,10 +43,26 @@ export default function RootLayout({ children }) {
 
         {/* Favicon */}
         <link rel="icon" href="/logo.png" />
-        <link rel="alternate" href="https://stratoslab.vercel.app/" hreflang="en" />
-        <link rel="alternate" href="https://stratoslab.vercel.app/" hreflang="en-US" />
-        <link rel="alternate" href="https://stratoslab.vercel.app/" hreflang="en-GB" />
-        <link rel="alternate" href="https://stratoslab.vercel.app/" hreflang="x-default" />
+        <link
+          rel="alternate"
+          href="https://stratoslab.vercel.app/"
+          hreflang="en"
+        />
+        <link
+          rel="alternate"
+          href="https://stratoslab.vercel.app/"
+          hreflang="en-US"
+        />
+        <link
+          rel="alternate"
+          href="https://stratoslab.vercel.app/"
+          hreflang="en-GB"
+        />
+        <link
+          rel="alternate"
+          href="https://stratoslab.vercel.app/"
+          hreflang="x-default"
+        />
         <link rel="canonical" href="https://stratoslab.vercel.app/" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
@@ -66,22 +82,23 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
         <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Stratuslab",
-      "url": "https://stratoslab.vercel.app/",
-      "description": "Stratuslab offers premium design and development services trusted by Web3 founders.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Stratuslab",
-        "logo": "https://stratoslab.vercel.app/logo.png",
-      },
-    }),
-  }}
-/>
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Stratuslab",
+              url: "https://stratoslab.vercel.app/",
+              description:
+                "Stratuslab offers premium design and development services trusted by Web3 founders.",
+              publisher: {
+                "@type": "Organization",
+                name: "Stratuslab",
+                logo: "https://stratoslab.vercel.app/logo.png",
+              },
+            }),
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
