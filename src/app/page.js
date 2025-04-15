@@ -309,7 +309,7 @@ export default function Home() {
             functional, secure, and outstanding products.
           </p>
           <div className="p-5 border-2 border-white rounded-lg bg-[#4e3c70]   backdrop-blur-lg transition-all">
-            <div className="max-w-[1240px] flex flex-col items-center justify-center gap-4">
+            <div className="max-w-[400px] flex flex-col items-center justify-center gap-4">
               <div className="text-2xl font-bold text-center">
                 <span className="text-[#f5a623]">Contact</span> us for a free
                 consultation
@@ -337,7 +337,7 @@ export default function Home() {
           id="services"
           className="text-2xl lg:text-6xl font-extrabold text-center mt-10 mb-10 max-w-[1240px] text-white w-[80%] mx-auto"
         >
-          Services we offer at Stratuslab
+          Services we offer at Stratos lab
         </h1>
         <div className="relative w-full lg:max-w-[90%] mx-auto overflow-hidden bg-[#4e3c70] rounded-lg">
           <div
@@ -381,13 +381,13 @@ export default function Home() {
           </div>
           <button
             onClick={prevSlide}
-            className="absolute top-1/3 md:top-1/2 left-4 transform -translate-y-1/2 bg-white text-black px-4 py-2 rounded-full border-black/50 border-2 backdrop-blur-lg"
+            className="absolute -bottom-5 md:top-1/2 left-4 transform -translate-y-1/2 bg-white text-black px-4 py-2 rounded-full border-black/50 border-2 backdrop-blur-lg"
           >
             Prev
           </button>
           <button
             onClick={nextSlide}
-            className="absolute top-1/3 md:top-1/2 right-4 transform -translate-y-1/2 bg-white text-black px-4 py-2 rounded-full border-black/50 border-2 backdrop-blur-lg"
+            className="absolute -bottom-5 md:top-1/2 right-4 transform -translate-y-1/2 bg-white text-black px-4 py-2 rounded-full border-black/50 border-2 backdrop-blur-lg"
           >
             Next
           </button>
@@ -556,7 +556,7 @@ export default function Home() {
         </div>
         <footer className="flex justify-center items-center gap-4 mt-10 bg-black p-5">
           <p className="text-[#b2aeb9] text-[12px] font-bold md:text-[20px]">
-            &copy; 2025 Stratuslab. All rights reserved.
+            &copy; 2025 Stratos lab. All rights reserved.
           </p>
         </footer>
       </div>

@@ -14,8 +14,26 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Stratuslab - Premium Web3 Design & Development",
-  description:
-    "Stratuslab offers premium design and development services trusted by Web3 founders. Transform your ideas into secure, scalable, and outstanding products.",
+  description: "Stratuslab offers premium design and development services...",
+  openGraph: {
+    title: "Stratuslab - Premium Web3 Design & Development",
+    description: "Stratuslab offers premium design and development services...",
+    url: "https://stratoslab.vercel.app",
+    images: [
+      {
+        url: "https://stratoslab.vercel.app/imagecard.png",
+        width: 1200,
+        height: 630,
+        alt: "Stratuslab - Premium Web3 Design & Development",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stratuslab - Premium Web3 Design & Development",
+    description: "Stratuslab offers premium design and development services...",
+    images: ["https://stratoslab.vercel.app/imagecard.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -32,7 +50,10 @@ export default function RootLayout({ children }) {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={metadata.title} />
         <meta property="og:description" content={metadata.description} />
-        <meta property="og:image" content="https://stratoslab.vercel.app/imagecard.png" />
+        <meta
+          property="og:image"
+          content="https://stratoslab.vercel.app/imagecard.png"
+        />
         <meta property="og:url" content="https://stratoslab.vercel.app/" />
 
         {/* Twitter */}
@@ -46,22 +67,22 @@ export default function RootLayout({ children }) {
         <link
           rel="alternate"
           href="https://stratoslab.vercel.app/"
-          hreflang="en"
+          hrefLang="en"
         />
         <link
           rel="alternate"
           href="https://stratoslab.vercel.app/"
-          hreflang="en-US"
+          hrefLang="en-US"
         />
         <link
           rel="alternate"
           href="https://stratoslab.vercel.app/"
-          hreflang="en-GB"
+          hrefLang="en-GB"
         />
         <link
           rel="alternate"
           href="https://stratoslab.vercel.app/"
-          hreflang="x-default"
+          hrefLang="x-default"
         />
         <link rel="canonical" href="https://stratoslab.vercel.app/" />
         <link rel="apple-touch-icon" href="/logo.png" />
