@@ -533,7 +533,7 @@ export default function Home() {
 
             <a href={""} target="_blank" aria-label="Visit our Telegram">
               <Image
-                src="/telegram.png"
+                src="/telegramlogo.svg"
                 alt="Telegram"
                 width={40}
                 height={40}
