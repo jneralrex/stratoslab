@@ -261,15 +261,15 @@ export default function Home() {
       <nav
         className={`fixed left-0 right-0 transition-all duration-300 ${conditional} rounded-lg z-[99]`}
       >
-        <div className="flex justify-between items-center p-4 text-white">
+        <div className="flex justify-between items-center text-white  h-16">
           <Image
             src="/logo.png"
             alt="Stratos lab logo"
-            width={50}
+            width={150}
             height={50}
-            className="md:w-[80px] sm:h-[50px]"
+            className="w-20 lg:w-auto"
           />{" "}
-          <div className="flex gap-2 sm:gap-4 justify-evenly items-center sm:w-[80%] lg:w-[70%] text-[11px] sm:text-[14px] ">
+          <div className=" flex gap-2 sm:gap-4 justify-evenly items-center w-[80%] sm:w-[80%] lg:w-[70%] text-[9px] sm:text-[14px]">
             <div
               className="cursor-pointer"
               onClick={() => handleScrollById("top")}
