@@ -263,11 +263,11 @@ export default function Home() {
       >
         <div className="flex justify-between items-center text-white  h-16">
           <Image
-            src="/logo.png"
+            src="/logo2.png"
             alt="Stratos lab logo"
-            width={150}
+            width={50}
             height={50}
-            className="w-20 lg:w-auto"
+            className="w-28 lg:w-30"
           />{" "}
           <div className=" flex gap-2 sm:gap-4 justify-evenly items-center w-[80%] sm:w-[80%] lg:w-[70%] text-[9px] sm:text-[14px]">
             <div

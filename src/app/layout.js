@@ -26,7 +26,7 @@ export const metadata = {
     url: "https://stratoslab.vercel.app",
     images: [
       {
-        url: "/imagecard.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "Stratuslab - Premium Web3 Design & Development",
@@ -38,7 +38,7 @@ export const metadata = {
     title: "Stratuslab - Premium Web3 Design & Development",
     description:
       "Stratuslab offers premium design and development services trusted by Web3 founders.",
-    images: ["/imagecard.png"],
+    images: ["/logo.png"],
   },
   icons: {
     icon: "/logo.png",
