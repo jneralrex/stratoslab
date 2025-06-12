@@ -288,7 +288,12 @@ export default function Home() {
             >
               Contact
             </div>
-            <div className="cursor-pointer">Portfolio</div>
+            <div className="cursor-pointer">
+
+              <a href={"https://glistening-vest-5c6.notion.site/2038f6cae2cf80519084d3c2521e5b15?v=2038f6cae2cf816f81c8000cd65f4441&source=copy_link"} target="_blank" aria-label="Visit our Portfolio">
+Portfolio
+              </a>
+            </div>
             <div className="cursor-pointer">About Us</div>
             <div
               className={`${conditionalButton} text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px] cursor-pointer`}
@@ -531,22 +536,10 @@ export default function Home() {
               />
             </a>
 
-            <a href={""} target="_blank" aria-label="Visit our Telegram">
+            <a href={"https://t.me/STRATOS_LAB"} target="_blank" aria-label="Visit our Telegram">
               <Image
                 src="/telegramlogo.svg"
                 alt="Telegram"
-                width={40}
-                height={40}
-                className="cursor-pointer"
-              />
-            </a>
-            <a
-              href={"www.linkedin.com.in/stratos-lab-7167b256b"}
-              target="_blank" aria-label="Visit our LinkedIn"
-            >
-              <Image
-                src="/linkedin.png"
-                alt="LinkedIN"
                 width={40}
                 height={40}
                 className="cursor-pointer"
