@@ -4,10 +4,12 @@ import FAQ from "@/components/Faq";
 import Snackbar from "@/components/Snackbar";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import emailjs from '@emailjs/browser';
+
 
 export default function Home() {
   const [conditional, setConditional] = useState("transparent");
-  const [conditionalButton, setConditionalButton] = useState("");
+  const [conditionalButton, setConditionalButton] = useState("hidden");
 
   const [calendlyLoaded, setCalendlyLoaded] = useState(false);
   const calendlyRef = useRef(null);
@@ -42,10 +44,15 @@ export default function Home() {
     }
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form submit triggered"); // ✅
+
+    console.log("Current message.services:", message.services);
 
     if (!message.services || message.services.length === 0) {
+      console.log("No services selected — aborting");
       setSnackbar({
         message: "Please select at least one service.",
         type: "error",
@@ -53,28 +60,27 @@ export default function Home() {
       return;
     }
 
-    setLoading(true);
+    setLoading(true); // ✅ should now be visible
 
     try {
-      // Format the services array into a string
-      const formattedServices = message.services.join(", ");
+      console.log("Sending email...");
 
-      // Prepare the data to send
+      const formattedServices = message.services.join(", ");
       const emailData = {
-        name: message.name,
-        email: message.email,
-        subject: message.subject,
-        message: message.message,
-        services: formattedServices, // Pass the formatted services
-        time: new Date().toLocaleString(), // Add the current time
+        ...message,
+        services: formattedServices,
+        time: new Date().toLocaleString(),
       };
 
       const response = await emailjs.send(
-        "service_jstzpq3",
-        "template_6ksx1j2",
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
         emailData,
-        "p4jhuC-QoGAD-kVuL"
-      );
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+      )
+
+
+      console.log("EmailJS response:", response);
 
       if (response.status === 200) {
         setSnackbar({
@@ -86,12 +92,14 @@ export default function Home() {
           email: "",
           subject: "",
           message: "",
-          services: [],
+          services: "",
+          time: "",
         });
       } else {
         throw new Error("Failed to send message");
       }
     } catch (error) {
+      console.error("Submit error:", error);
       setSnackbar({
         message: "Failed to submit message. Try again!",
         type: "error",
@@ -100,6 +108,7 @@ export default function Home() {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     if (snackbar.message) {
@@ -113,7 +122,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!calendlyLoaded) return;
-  
+
     const currentRef = calendlyRef.current; // Copy the ref value to a local variable
     const script = document.createElement("script");
     script.src = "https://assets.calendly.com/assets/external/widget.js";
@@ -121,7 +130,7 @@ export default function Home() {
     script.onload = () => {
       if (window.Calendly && currentRef) {
         window.Calendly.initInlineWidget({
-          url: "https://calendly.com/domicrypt/30min",
+          url: "https://calendly.com/stratos_lab/30min",
           parentElement: currentRef,
           prefill: {},
           utm: {},
@@ -129,7 +138,7 @@ export default function Home() {
       }
     };
     document.body.appendChild(script);
-  
+
     return () => {
       document.body.removeChild(script);
       if (currentRef) {
@@ -291,7 +300,7 @@ export default function Home() {
             <div className="cursor-pointer">
 
               <a href={"https://glistening-vest-5c6.notion.site/2038f6cae2cf80519084d3c2521e5b15?v=2038f6cae2cf816f81c8000cd65f4441&source=copy_link"} target="_blank" aria-label="Visit our Portfolio">
-Portfolio
+                Portfolio
               </a>
             </div>
             <div className="cursor-pointer">About Us</div>
@@ -375,9 +384,8 @@ Portfolio
                     <span
                       key={index}
                       onClick={() => setCurrentIndex(index)}
-                      className={`h-3 w-3 mx-1 rounded-full cursor-pointer ${
-                        currentIndex === index ? "bg-white" : "bg-gray-500"
-                      }`}
+                      className={`h-3 w-3 mx-1 rounded-full cursor-pointer ${currentIndex === index ? "bg-white" : "bg-gray-500"
+                        }`}
                     />
                   ))}
                 </div>
