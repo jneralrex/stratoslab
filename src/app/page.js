@@ -303,7 +303,7 @@ export default function Home() {
                 Portfolio
               </a>
             </div>
-            <div className="cursor-pointer">About Us</div>
+            <div className="cursor-pointer">Courses</div>
             <div
               className={`${conditionalButton} text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px] cursor-pointer`}
               onClick={() => setCalendlyLoaded(true)}
