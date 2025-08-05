@@ -99,8 +99,11 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className="antialiased">
+<body className="antialiased">
+
+
         <VantaBackground />
+
         {children}
       </body>
     </html>

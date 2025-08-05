@@ -27,7 +27,11 @@ const VantaBackground = () => {
     };
   }, [vantaEffect]);
 
-  return <div ref={vantaRef} className="h-screen w-full absolute top-0 left-0 z-[-1]" />;
+  return <div
+  ref={vantaRef}
+  className="fixed top-0 left-0 h-screen w-screen z-[-1] overflow-hidden"
+/>
+
 };
 
 export default VantaBackground;
