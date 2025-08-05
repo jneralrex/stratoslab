@@ -18,7 +18,7 @@ export default function AffiliateLandingPage() {
 
         <p className="text-lg md:text-xl text-gray-300 mb-8">
           Get paid to refer users! Share your unique link, earn commissions for every signup and sale.
-          It’s fast, free, and effortless.
+          It&apos;s fast, free, and effortless.
         </p>
 
         <div className="flex justify-center gap-4 flex-wrap">
