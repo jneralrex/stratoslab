@@ -5,6 +5,7 @@ import Snackbar from "@/components/Snackbar";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import emailjs from '@emailjs/browser';
+import Link from "next/link";
 
 
 export default function Home() {
@@ -303,7 +304,12 @@ export default function Home() {
                 Portfolio
               </a>
             </div>
-            <div className="cursor-pointer">Courses</div>
+            {/* <div className="cursor-pointer">Courses</div> */}
+            <div className="cursor-pointer">
+              <Link href="/stratuslab/affiliate" aria-label="Visit our Affiliate Program">
+                Affiliate Program
+              </Link>
+            </div>
             <div
               className={`${conditionalButton} text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px] cursor-pointer`}
               onClick={() => setCalendlyLoaded(true)}
