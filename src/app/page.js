@@ -148,6 +148,7 @@ export default function Home() {
     };
   }, [calendlyLoaded]);
 
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -277,15 +278,13 @@ export default function Home() {
             alt="Stratos lab logo"
             width={50}
             height={50}
-            className="w-28 lg:w-30"
+            // className="w-28 lg:w-30"
+            // className="w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36"
+            //  sizes="(max-width: 768px) 180px, (max-width: 1024px) 100px, 150px"
+             className="h-auto w-auto"
+
           />{" "}
-          <div className=" flex gap-2 sm:gap-4 justify-evenly items-center w-[80%] sm:w-[80%] lg:w-[70%] text-[9px] sm:text-[14px]">
-            <div
-              className="cursor-pointer"
-              onClick={() => handleScrollById("top")}
-            >
-              Home
-            </div>
+          <div className=" flex gap-2 sm:gap-4 justify-evenly items-center w-[80%] sm:w-[80%] lg:w-[70%] text-[8px] sm:text-[14px]">
             <div
               className="cursor-pointer"
               onClick={() => handleScrollById("services")}
@@ -304,7 +303,11 @@ export default function Home() {
                 Portfolio
               </a>
             </div>
-            {/* <div className="cursor-pointer">Courses</div> */}
+            <div className="cursor-pointer">
+              <Link href="/stratuslab/courses" aria-label="Explore our Courses">
+                Join Our Classes
+              </Link>
+            </div>
             <div className="cursor-pointer">
               <Link href="/stratuslab/affiliate" aria-label="Visit our Affiliate Program">
                 Affiliate Program
@@ -319,6 +322,17 @@ export default function Home() {
           </div>
         </div>
       </nav>
+
+       <button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-[#4e3c70] text-white border-2 border-white shadow-lg transition-all duration-300 ${
+          conditionalButton === "hidden" ? "hidden" : "block"
+        }`}
+        aria-label="Back to Top"
+      >
+        ↑
+      </button>
+      
       <div className="h-screen text-white">
         <div className="flex flex-col items-center justify-center h-screen gap-[10px] lg:gap-[50px] p-2 ">
           <h1 className="text-[26px] sm:text-[40px] lg:text-6xl font-extrabold text-center max-w-[1240px] md:p-5 mt-[30px] md:mt-[50px]">

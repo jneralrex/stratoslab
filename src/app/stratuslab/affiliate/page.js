@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from "next/navigation";
+
 
 export default function AffiliateLandingPage() {
+  const router = useRouter();
   return (
     <motion.div
       className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center px-6 py-12"
@@ -21,7 +24,7 @@ export default function AffiliateLandingPage() {
           It&apos;s fast, free, and effortless.
         </p>
 
-        <div className="flex justify-center gap-4 flex-wrap">
+        <div className="flex justify-center gap-4 flex-wrap max-w-md mx-auto">
           <Link href="/register">
             <button className="bg-blue-600 px-8 py-3 rounded-lg font-semibold text-white hover:bg-blue-700 transition">
               Join Now
@@ -33,7 +36,12 @@ export default function AffiliateLandingPage() {
               Already an Affiliate?
             </button>
           </Link>
+
+            <button className="bg-transparent border border-blue-600 px-8 py-3 rounded-lg font-semibold text-white hover:bg-blue-700 transition"  onClick={() => router.back()}>
+              ← Back
+            </button>
         </div>
+        
 
         <div className="mt-12 text-sm text-gray-500">
           Earn up to <span className="text-green-400 font-bold">$100</span> per active user. No limits.
