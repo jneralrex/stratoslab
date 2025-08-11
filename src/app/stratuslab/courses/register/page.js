@@ -129,12 +129,15 @@ function RegisterForm() {
         </div>
 
         {/* Submit */}
+        <Link href="/stratuslab/courses/dashboard">
+        
         <button
           type="submit"
           className="bg-green-500 hover:bg-green-600 text-black font-semibold px-6 py-3 rounded-lg transition duration-200 w-full"
         >
           Submit Registration
         </button>
+        </Link>
 
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
