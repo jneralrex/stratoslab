@@ -8,28 +8,28 @@ const courses = [
     title: "Social Media Management",
     description:
       "Dive deep into platform algorithms, content strategies, analytics, and campaign planning.",
-    image: "/images/courses/social-media.jpg",
+    image: "/images/courses/social-media.webp",
   },
   {
     slug: "business-management",
     title: "Business Management",
     description:
       "Explore leadership, business models, team building, operations, and financial planning.",
-    image: "/images/courses/business-pics.jpg",
+    image: "/images/courses/business-pics.webp",
   },
   {
     slug: "ai-building",
     title: "AI Building Fundamentals",
     description:
       "Build intelligent systems using Python, ML frameworks, and deploy real-world AI projects.",
-    image: "/images/courses/ai-pics.jpg",
+    image: "/images/courses/ai-pics.webp",
   },
   {
     slug: "web-development",
     title: "Web Development Essentials",
     description:
       "Learn HTML, CSS, JavaScript, React, and backend development with APIs and databases.",
-    image: "/images/courses/web.jpg",
+    image: "/images/courses/web.webp",
   },
   {
     slug: "community-management",
