@@ -48,7 +48,7 @@ export default function CoursesPage() {
 
   return (
     <div className="min-h-screen bg-black text-white p-10">
-      <div className="max-w-4xl mx-auto flex items-center mb-8">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center mb-8">
         <button
           onClick={() => router.back()}
           className="mr-4 text-green-400 hover:underline flex items-center gap-2"
