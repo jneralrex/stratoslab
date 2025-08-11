@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { motion } from 'framer-motion'
+import Link from "next/link";
 
 
 export default function RegisterPage() {
@@ -131,12 +132,12 @@ export default function RegisterPage() {
                 <div className="mt-4 text-center">
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                         Already have an account?{" "}
-                        <a
+                        <Link
                             href="/stratuslab/courses/login"
                             className="text-blue-500 hover:underline"
                         >
                             Login
-                        </a>
+                        </Link>
                     </p>
                 </div>
 

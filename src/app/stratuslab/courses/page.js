@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -65,7 +66,9 @@ export default function CoursesPage() {
             className="bg-[#1f1f1f] p-6 rounded-lg shadow-lg border border-gray-700 hover:shadow-green-500/30 transition-shadow duration-200"
           >
             <div className="h-40 overflow-hidden mb-4 rounded-md">
-              <img
+              <Image
+              width={1000}
+              height={1000}
                 src={course.image}
                 alt={course.title}
                 className="w-full h-full object-cover"

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 
 const courses = [
@@ -65,7 +66,7 @@ export default function CourseDetailPage() {
           <span>Back</span>
         </button>
         <h1 className="text-3xl font-bold">Course Not Found</h1>
-        <p>The course you're looking for doesn't exist.</p>
+        <p>The course you`&apos;`re looking for doesn't exist.</p>
       </div>
     );
   }
@@ -86,7 +87,9 @@ export default function CourseDetailPage() {
       </button>
 
       <div className="max-w-4xl mx-auto">
-        <img
+        <Image
+        width={1000}
+              height={1000}
           src={course.image}
           alt={course.title}
           className="w-full lg:h-[400px] object-cover rounded-lg mb-6"

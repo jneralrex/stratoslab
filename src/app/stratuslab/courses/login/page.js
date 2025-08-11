@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -81,13 +82,13 @@ export default function LoginPage() {
 
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Don’t have an account?{" "}
-            <a
+            Don`&apos;`t have an account?{" "}
+            <Link
               href="/stratuslab/courses/register"
               className="text-blue-500 hover:underline"
             >
               Register
-            </a>
+            </Link>
           </p>
         </div>
       </form>
