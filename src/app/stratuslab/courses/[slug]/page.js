@@ -66,7 +66,7 @@ export default function CourseDetailPage() {
           <span>Back</span>
         </button>
         <h1 className="text-3xl font-bold">Course Not Found</h1>
-        <p>The course you`&apos;`re looking for doesn't exist.</p>
+        <p>The course you`&apos;`re looking for doesn`&apos;`t exist.</p>
       </div>
     );
   }
