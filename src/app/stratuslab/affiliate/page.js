@@ -20,7 +20,7 @@ export default function AffiliateLandingPage() {
         </h1>
 
         <p className="text-lg md:text-xl text-gray-300 mb-8">
-          Get paid to refer users! Share your unique link, earn commissions for every signup and sale.
+          Get paid to refer users! Share your unique link, earn commissions for every sale through your refferal code.
           It&apos;s fast, free, and effortless.
         </p>
 
@@ -44,7 +44,7 @@ export default function AffiliateLandingPage() {
         
 
         <div className="mt-12 text-sm text-gray-500">
-          Earn up to <span className="text-green-400 font-bold">$100</span> per active user. No limits.
+          Earn up to <span className="text-green-400 font-bold">$100</span> per user who buys a course. No limits.
         </div>
       </div>
     </motion.div>
