@@ -1,14 +1,23 @@
 'use client'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { logUserIn } from '@/utils/axios/endPoints'
+import useLoadingStore from '@/utils/store/useLoading'
 
 export default function LoginPage() {
   const { register, handleSubmit } = useForm()
-  
+  const { loading } = useLoadingStore(); 
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const router = useRouter()
+
+  const onSubmit = async (formData) => {
+    try {
+      await logUserIn(formData)
+      router.push("/stats") // ✅ redirect only on success
+    } catch (error) {
+      alert("Login failed: " + (error.response?.data?.message || error.message))
+    }
   }
 
   return (
@@ -25,6 +34,7 @@ export default function LoginPage() {
           Login to Your Account
         </h2>
         
+        {/* Email */}
         <div className="mb-4">
           <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Email
@@ -37,6 +47,7 @@ export default function LoginPage() {
           />
         </div>
 
+        {/* Password */}
         <div className="mb-6">
           <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Password
@@ -49,15 +60,14 @@ export default function LoginPage() {
           />
         </div>
 
-        <Link href="/stats">
-         <button 
+        {/* Submit */}
+        <button 
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
         >
-          Login
+                  {loading ? "Logging in..." : "Login"}
+
         </button>
-        </Link>
-       
 
         <p className="text-sm mt-4 text-center text-gray-600 dark:text-gray-400">
           Don&apos;t have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a>

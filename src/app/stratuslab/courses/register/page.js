@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -9,11 +9,22 @@ import Link from "next/link";
 function RegisterForm() {
   const searchParams = useSearchParams();
   const selectedCourse = searchParams.get("course");
+  const ref = searchParams.get("ref");
+
+
+  const [referral, setReferral] = useState("");
+
+  useEffect(() => {
+    if (ref) {
+      setReferral(ref);
+    }
+  }, [ref]);
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     course: selectedCourse || "",
+    refCode: ref || "",
   });
 
   const handleChange = (e) => {
@@ -23,22 +34,40 @@ function RegisterForm() {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.course) {
-      alert("Please fill in all fields.");
-      return;
-    }
+  if (!formData.name || !formData.email || !formData.course) {
+    alert("Please fill in all fields.");
+    return;
+  }
 
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
+  if (formData.password !== formData.confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
 
-    console.log("Form submitted:", formData);
+  try {
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData), // includes refCode!
+    });
+
+    if (!res.ok) throw new Error("Registration failed");
+    const data = await res.json();
+
     alert("Successfully registered for " + formData.course);
-  };
+    console.log("Registered:", data);
+
+    // Redirect to dashboard
+    window.location.href = "/stratuslab/courses/dashboard";
+  } catch (err) {
+    console.error(err);
+    alert("Error during registration.");
+  }
+};
+
 
   return (
     <motion.div
@@ -95,6 +124,21 @@ function RegisterForm() {
             readOnly
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
             required
+          />
+        </div>
+
+        {/* Refferal Code */}
+        <div className="mb-4">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            Refferal Code
+          </label>
+          <input
+            type="text"
+            name="refCode"
+            value={referral}           
+             readOnly
+            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            
           />
         </div>
 
