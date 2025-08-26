@@ -2,7 +2,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import VantaBackground from "@/components/VantaBackground";
-import LoadingOverlay from "@/components/loadingOverLay";
+import LoadingOverlay from "@/components/LoadingOverLay";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
