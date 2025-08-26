@@ -48,8 +48,8 @@ export default function StudentDashboard() {
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 col-span-2">
           <h2 className="text-xl font-semibold mb-4">📢 Announcements</h2>
           <ul className="space-y-2 list-disc list-inside text-sm">
-            <li>"Live session postponed to Friday 4PM."</li>
-            <li>"New resource uploaded for Week 4."</li>
+            <li>Live session postponed to Friday 4PM.</li>
+            <li>New resource uploaded for Week 4.</li>
           </ul>
         </div>
 
