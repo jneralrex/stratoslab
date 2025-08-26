@@ -6,6 +6,8 @@ const useAuthStore = create(
     (set) => ({
       accessToken: null,
       refreshToken: null,
+      message: null,
+      email:null,
       user: null,
 
       // Actions
@@ -13,7 +15,8 @@ const useAuthStore = create(
         set({ accessToken, refreshToken }),
 
       setUser: (user) => set({ user }),
-
+      setEmail: (email) => set({ email }),
+      setMessage: (message) => set({ message }),
       logout: () =>
         set({
           accessToken: null,
