@@ -72,7 +72,7 @@ export default function CourseDetailPage() {
   }
 
   const handleRegister = () => {
-  router.push(`/stratuslab/courses/register?course=${course.slug}`);
+  router.push(`/stratuslab/student/register?course=${course.slug}`);
 };
 
 

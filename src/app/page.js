@@ -304,7 +304,7 @@ export default function Home() {
               </a>
             </div>
             <div className="cursor-pointer">
-              <Link href="/stratuslab/courses" aria-label="Explore our Courses">
+              <Link href="/stratuslab/student/courses" aria-label="Explore our Courses">
                 Join Our Classes
               </Link>
             </div>

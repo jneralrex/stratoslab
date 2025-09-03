@@ -25,13 +25,13 @@ export default function AffiliateLandingPage() {
         </p>
 
         <div className="flex justify-center gap-4 flex-wrap max-w-md mx-auto">
-          <Link href="/register">
+          <Link href="/stratuslab/affiliate/register">
             <button className="bg-blue-600 px-8 py-3 rounded-lg font-semibold text-white hover:bg-blue-700 transition">
               Join Now
             </button>
           </Link>
 
-          <Link href="/login">
+          <Link href="/stratuslab/affiliate/login">
             <button className="bg-transparent border border-blue-600 px-8 py-3 rounded-lg font-semibold text-white hover:bg-blue-700 transition">
               Already an Affiliate?
             </button>

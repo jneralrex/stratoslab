@@ -77,7 +77,7 @@ export default function CoursesPage() {
             <h2 className="text-2xl font-bold mb-2">{course.title}</h2>
             <p className="text-gray-300 mb-4">{course.description}</p>
             <Link
-              href={`/stratuslab/courses/${course.slug}`}
+              href={`/stratuslab/student/courses/${course.slug}`}
               className="text-green-400 hover:underline"
             >
               View Course →

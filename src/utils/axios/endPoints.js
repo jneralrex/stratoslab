@@ -27,10 +27,36 @@ export async function regAffiliate({ fullName, username, email, phoneNumber, cou
   }
 }
 
+// Register Student
+export async function regStudent({ fullName, username, email, phoneNumber, countryOfResidence, course, ref, password }) {
+  try {
+    const { data } = await api.post("auth/signup", {
+      fullName,
+      phoneNumber,
+      countryOfResidence,
+      username,
+      email,
+      password,
+      role: "student",
+      course,
+      ref,
+    });
+
+    console.log("Registered student:", data);
+
+    // Save email in store for OTP verification
+    useAuthStore.getState().setEmail(email);
+    return data.user;
+  } catch (err) {
+    console.error("Registration failed:", err.response?.data || err.message);
+    throw err;
+  }
+};
+
 // ✅ Verify OTP
 export async function verifyOtp({ otp }) {
   try {
-    const email = useAuthStore.getState().email; 
+    const email = useAuthStore.getState().email;
 
     if (!email) throw new Error("No email found, Register first.");
 
@@ -45,10 +71,10 @@ export async function verifyOtp({ otp }) {
   }
 }
 
-// ✅ Verify OTP
+// resend OTP
 export async function resendOtp() {
   try {
-    const email = useAuthStore.getState().email; 
+    const email = useAuthStore.getState().email;
 
     if (!email) throw new Error("No email found, Register first.");
 
@@ -63,7 +89,7 @@ export async function resendOtp() {
   }
 }
 
-// ✅ Login User
+//  Login User
 export async function logUserIn({ email, password }) {
   try {
     const { data } = await api.post("auth/signin", { email, password });
@@ -83,7 +109,7 @@ export async function logUserIn({ email, password }) {
   }
 }
 
-// ✅ Get Earnings
+//  Get Earnings
 export async function getAffiliateEarnings() {
   try {
     const { data } = await api.get("affiliate/earnings");
@@ -94,7 +120,7 @@ export async function getAffiliateEarnings() {
   }
 }
 
-// ✅ Get Referrals
+//  Get Referrals
 export async function getAffiliateRefferals() {
   try {
     const { data } = await api.get("affiliate/referrals");

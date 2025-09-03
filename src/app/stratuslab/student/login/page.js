@@ -3,33 +3,25 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import useLoadingStore from "@/utils/store/useLoading";
+import { logUserIn } from "@/utils/axios/endPoints";
 
 export default function LoginPage() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+const { register, handleSubmit } = useForm();
+  const { loading } = useLoadingStore(); 
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const router = useRouter();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Basic validation
-    if (!formData.email || !formData.password) {
-      alert("Please enter both email and password.");
-      return;
+  const onSubmit = async (formData) => {
+    try {
+      await logUserIn(formData)
+      router.push("student/dashboard") 
+    } catch (error) {
+      alert("Login failed: " + (error.response?.data?.message || error.message))
     }
-
-    // Replace with your login logic or API call
-    console.log("Logging in with:", formData);
-    alert("Login successful (fake login for now)");
-  };
+  }
 
   return (
     <motion.div
@@ -38,56 +30,51 @@ export default function LoginPage() {
       animate={{ opacity: 1 }}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)} 
         className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md"
       >
         <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white text-center">
           Login to Your Account
         </h2>
 
+        {/* Email */}
         <div className="mb-4">
           <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Email
           </label>
-          <input
+          <input 
             type="email"
-            name="email"
-            placeholder="Your Email"
-            onChange={handleChange}
+            {...register("email")} 
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
             required
           />
         </div>
 
-        <div className="mb-4">
+        {/* Password */}
+        <div className="mb-6">
           <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Password
           </label>
-          <input
+          <input 
             type="password"
-            name="password"
-            placeholder="Your Password"
-            onChange={handleChange}
+            {...register("password")} 
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
             required
           />
         </div>
 
-        <Link href="/stratuslab/courses/dashboard">
         
         <button
           type="submit"
           className="bg-green-500 hover:bg-green-600 text-black font-semibold px-6 py-3 rounded-lg transition duration-200 w-full"
         >
-          Login
-        </button>
-        </Link>
+         {loading ? "Logging in..." : "Login"}        </button>
 
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Don`&apos;`t have an account?{" "}
             <Link
-              href="/stratuslab/courses/register"
+              href="/stratuslab/student/register"
               className="text-blue-500 hover:underline"
             >
               Register
