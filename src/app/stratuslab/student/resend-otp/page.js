@@ -15,7 +15,7 @@ export default function RegisterPage() {
   const onSubmit = async () => {
     try {
       await resendOtp()
-      router.push("/student/verify-otp") // ✅ redirect only on success
+      router.push("/stratuslab/student/verify-otp") // ✅ redirect only on success
     } catch (error) {
       alert("Login failed: " + (error.response?.data?.message || error.message))
     }

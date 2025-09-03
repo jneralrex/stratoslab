@@ -17,7 +17,7 @@ const { register, handleSubmit } = useForm();
   const onSubmit = async (formData) => {
     try {
       await logUserIn(formData)
-      router.push("student/dashboard") 
+      router.push("/stratuslab/student/dashboard") 
     } catch (error) {
       alert("Login failed: " + (error.response?.data?.message || error.message))
     }

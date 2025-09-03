@@ -82,7 +82,7 @@ function RegisterForm() {
     try {
       console.log(formData)
       await regStudent({ ...formData, course: formData.course || selectedCourse, ref: ref });
-      router.push("/student/verify-otp");
+      router.push("/stratuslab/student/verify-otp");
     } catch (error) {
       console.log(error)
       alert("Signup failed: " + (error.response?.data?.message || error.message));
