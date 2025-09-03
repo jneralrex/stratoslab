@@ -9,7 +9,7 @@ export default function StudentDashboard() {
     <div className="min-h-screen bg-gray-100 p-6 dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Welcome */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Welcome back, {user.username} 👋</h1>
+        <h1 className="text-3xl font-bold">Welcome back, {user?.username} 👋</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400">You have 2 unread notifications</p>
       </div>
 

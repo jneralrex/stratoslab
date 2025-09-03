@@ -47,7 +47,7 @@ export default function AffiliatePage() {
       <div className="max-w-2xl w-full text-center">
         <h1 className="text-4xl font-bold mb-4">Affiliate Dashboard</h1>
         <p className="mb-6 text-gray-300">
-          Welcome <span className="font-semibold">{user.username}</span>!  
+          Welcome <span className="font-semibold">{user?.username}</span>!  
           Earn money by referring users to our platform.
         </p>
 
