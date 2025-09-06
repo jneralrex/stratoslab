@@ -4,21 +4,55 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import useLoadingStore from '@/utils/store/useLoading'
-import { regAffiliate } from '@/utils/axios/endPoints'
+import { regByAdmin } from '@/utils/axios/endPoints'
 
 export default function RegisterPage() {
   const { register, handleSubmit } = useForm()
 
   const { loading } = useLoadingStore();
 
-  const router = useRouter()
+    // Fetch countries
+    useEffect(() => {
+      async function fetchCountries() {
+        try {
+          const res = await fetch(
+            "https://restcountries.com/v3.1/all?fields=name,flags,idd"
+          );
+          const data = await res.json();
+  
+          const formatted = data.map((c) => ({
+            name: c.name.common,
+            flag: c.flags?.png,
+            code: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
+          }));
+  
+          formatted.sort((a, b) => a.name.localeCompare(b.name));
+          setCountries(formatted);
+        } catch (err) {
+          console.error("Failed to fetch countries", err);
+        } finally {
+          setLoadingCountries(false);
+        }
+      }
+  
+      fetchCountries();
+    }, []);
+
+
+     // Handle country selection → auto-fill phone code
+  const handleCountryChange = (e) => {
+    const selected = countries.find((c) => c.name === e.target.value);
+    if (selected?.code) {
+      setPhoneCode(selected.code);
+      setValue("phoneNumber", selected.code + " "); // Pre-fill with code
+    }
+  };
 
   const onSubmit = async (formData) => {
     try {
-      await regAffiliate(formData)
-      router.push("/affiliate/verify-otp")
+      await regByAdmin(formData)
     } catch (error) {
-      alert("Login failed: " + (error.response?.data?.message || error.message))
+      alert("Reg failed: " + (error.response?.data?.message || error.message))
     }
   }
   return (
@@ -59,16 +93,28 @@ export default function RegisterPage() {
           />
         </div>
 
+      {/* Country of Residence */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-semibold mb-2">
             Country of Residence
           </label>
-          <input
-            type="text"
-            {...register("countryOfResidence")}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-            required
-          />
+          {loadingCountries ? (
+            <p className="text-gray-500">Loading countries...</p>
+          ) : (
+            <select
+              {...register("countryOfResidence")}
+              required
+              onChange={handleCountryChange}
+              className="w-full px-4 py-2 rounded-md border"
+            >
+              <option value="">Select your country</option>
+              {countries.map((c, i) => (
+                <option key={i} value={c.name}>
+                  {c.name} ({c.code || "N/A"})
+                </option>
+              ))}
+            </select>
+          )}
         </div>
 
 
@@ -91,6 +137,19 @@ export default function RegisterPage() {
           <input
             type="email"
             {...register("email")}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            required
+          />
+        </div>
+
+
+        <div className="mb-4">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            Role
+          </label>
+          <input
+            type="text"
+            {...register("role")}
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
             required
           />

@@ -1,7 +1,7 @@
 import useAuthStore from "../store/useAuthStore";
 import api from "./axiosInstance";
 
-// ✅ Register Affiliate
+// Register Affiliate
 export async function regAffiliate({ fullName, username, email, phoneNumber, countryOfResidence, password }) {
   try {
     const { data } = await api.post("auth/signup", {
@@ -19,6 +19,56 @@ export async function regAffiliate({ fullName, username, email, phoneNumber, cou
 
     // Save email in store for OTP verification
     useAuthStore.getState().setEmail(email);
+
+    return data.user;
+  } catch (err) {
+    console.error("Registration failed:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+
+// Register Admin
+export async function regAdmin({ fullName, username, email, phoneNumber, countryOfResidence, password }) {
+  try {
+    const { data } = await api.post("auth/signup", {
+      fullName,
+      username,
+      email,
+      phoneNumber,
+      countryOfResidence,
+      course: "nil",
+      role: "admin",
+      password,
+    });
+
+    console.log("Registered affiliate:", data);
+
+    // Save email in store for OTP verification
+    useAuthStore.getState().setEmail(email);
+
+    return data.user;
+  } catch (err) {
+    console.error("Registration failed:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+//Reg by Admin
+export async function regByAdmin({ fullName, username, email, phoneNumber, role, countryOfResidence, password }) {
+  try {
+    const { data } = await api.post("auth/signup", {
+      fullName,
+      username,
+      email,
+      phoneNumber,
+      countryOfResidence,
+      course: "nil",
+      role,
+      password,
+    });
+
+    console.log("Registered affiliate:", data);
 
     return data.user;
   } catch (err) {
@@ -130,3 +180,73 @@ export async function getAffiliateRefferals() {
     throw err;
   }
 }
+
+
+
+// Transaction Endpoints for admins
+
+export async function getAllTransactions() {
+  try {
+    const { data } = await api.get("transactions");
+    return data.transactions;
+  } catch (err) {
+    console.error("Failed to fetch transactions:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+export async function getTransactionsByStatus(status) {
+  try {
+    const { data } = await api.get(`transactions/status/${status}`);
+    return data.transactions;
+  } catch (err) {
+    console.error("Failed to fetch transactions by status:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+export async function confirmTransaction(transactionId) {
+  try {
+    const { data } = await api.post(`transactions/${transactionId}/confirm`);
+    return data;
+  } catch (err) {
+    console.error("Failed to confirm transaction:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+export async function rejectTransaction(transactionId) {
+  try {
+    const { data } = await api.post(`transactions/${transactionId}/reject`);
+    return data;
+  } catch (err) {
+    console.error("Failed to reject transaction:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+export async function deleteTransaction(transactionId) {
+  try {
+    const { data } = await api.delete(`transactions/${transactionId}`);
+    return data;
+  } catch (err) {
+    console.error("Failed to delete transaction:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+
+// Get All Users - Admin
+// ✅ Admin: Get All Users
+export async function getAllUsers(page = 1, limit = 10) {
+  try {
+    const { data } = await api.get(`user/getAllUsers?page=${page}&limit=${limit}`);
+    console.log(data)
+    return data; // contains users, totalUsers, totalPages, currentPage
+  } catch (err) {
+    console.error("Failed to fetch users:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+

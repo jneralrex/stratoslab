@@ -125,12 +125,12 @@ function RegisterForm() {
 
   // Courses list
   const courses = [
-    "Web Development",
-    "UI/UX Design",
-    "Data Science",
-    "Mobile App Development",
-    "Cybersecurity",
-    "social-media-management"
+    "social-media-management",
+    "business-management",
+    "ai-building",
+    "web-development",
+    "community-management",
+    "web3-marketing"
   ];
   return (
     <motion.div
@@ -224,25 +224,6 @@ function RegisterForm() {
           />
         </div>
 
-
-        {/* ✅ Course Dropdown */}
-        {/* <div className="mb-4">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-            Course
-          </label>
-          <select
-            {...register("course")}
-            disabled={!!selectedCourse} // lock dropdown if course is preselected
-            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-          >
-            <option value="">Select Course</option>
-            {courses.map((course, i) => (
-              <option key={i} value={course}>
-                {course}
-              </option>
-            ))}
-          </select>
-        </div> */}
 
         {/* ✅ Course Dropdown */}
         <div className="mb-4">
