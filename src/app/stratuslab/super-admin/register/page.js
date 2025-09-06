@@ -11,6 +11,9 @@ export default function RegisterPage() {
   const { register, handleSubmit } = useForm()
 
   const { loading } = useLoadingStore();
+  const [countries, setCountries] = useState([]);
+    const [loadingCountries, setLoadingCountries] = useState(true);
+    const [phoneCode, setPhoneCode] = useState("");
 
   const router = useRouter()
 
