@@ -1,10 +1,10 @@
 'use client'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+
 import useLoadingStore from '@/utils/store/useLoading'
 import { regByAdmin } from '@/utils/axios/endPoints'
+import { useEffect } from 'react'
 
 export default function RegisterPage() {
   const { register, handleSubmit } = useForm()

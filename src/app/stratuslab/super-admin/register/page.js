@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import useLoadingStore from '@/utils/store/useLoading'
 import { regAdmin, regAffiliate } from '@/utils/axios/endPoints'
+import { useEffect } from 'react'
 
 export default function RegisterPage() {
   const { register, handleSubmit } = useForm()
