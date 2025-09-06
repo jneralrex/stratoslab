@@ -4,12 +4,15 @@ import { motion } from 'framer-motion'
 
 import useLoadingStore from '@/utils/store/useLoading'
 import { regByAdmin } from '@/utils/axios/endPoints'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function RegisterPage() {
   const { register, handleSubmit } = useForm()
 
   const { loading } = useLoadingStore();
+  const [countries, setCountries] = useState([]);
+    const [loadingCountries, setLoadingCountries] = useState(true);
+    const [phoneCode, setPhoneCode] = useState("");
 
     // Fetch countries
     useEffect(() => {
