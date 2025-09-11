@@ -91,18 +91,102 @@
 
 
 
-// lib/axios.js
+// import axios from "axios";
+// import useLoadingStore from "../store/useLoading";
+// import useAuthStore from "../store/useAuthStore";
+
+// const api = axios.create({
+//   baseURL: process.env.NEXT_PUBLIC_API_URL,
+//   withCredentials: true, 
+// });
+
+// let isRefreshing = false;
+// let failedQueue = [];
+
+// const processQueue = (error, token = null) => {
+//   failedQueue.forEach((prom) => {
+//     if (error) prom.reject(error);
+//     else prom.resolve(token);
+//   });
+//   failedQueue = [];
+// };
+
+// api.interceptors.request.use(
+//   (config) => {
+//     useLoadingStore.getState().setLoading(true);
+//     const token = useAuthStore.getState().accessToken;
+//     if (token) config.headers["Authorization"] = `Bearer ${token}`;
+//     return config;
+//   },
+//   (error) => {
+//     useLoadingStore.getState().setLoading(false);
+//     return Promise.reject(error);
+//   }
+// );
+
+// api.interceptors.response.use(
+//   (response) => {
+//     useLoadingStore.getState().setLoading(false);
+//     return response;
+//   },
+//   async (error) => {
+//     const originalRequest = error.config;
+//     useLoadingStore.getState().setLoading(false);
+
+//     if (error.response?.status === 401 && !originalRequest._retry) {
+//       if (isRefreshing) {
+//         return new Promise((resolve, reject) => {
+//           failedQueue.push({ resolve, reject });
+//         })
+//           .then((token) => {
+//             originalRequest.headers["Authorization"] = `Bearer ${token}`;
+//             return api(originalRequest);
+//           })
+//           .catch((err) => Promise.reject(err));
+//       }
+
+//       originalRequest._retry = true;
+//       isRefreshing = true;
+
+//       try {
+//         const { data } = await axios.post(
+//           `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
+//           {}, // no body
+//           { withCredentials: true }
+//         );
+
+//         useAuthStore.getState().setTokens({ accessToken: data.accessToken });
+
+//         api.defaults.headers.common["Authorization"] =
+//           "Bearer " + data.accessToken;
+
+//         processQueue(null, data.accessToken);
+//         return api(originalRequest);
+//       } catch (err) {
+//         processQueue(err, null);
+//         useAuthStore.getState().logout();
+//         return Promise.reject(err);
+//       } finally {
+//         isRefreshing = false;
+//       }
+//     }
+
+//     return Promise.reject(error);
+//   }
+// );
+
+// export default api;
+
+
+
 import axios from "axios";
-import useLoadingStore from "../store/useLoading";
 import useAuthStore from "../store/useAuthStore";
 
-
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL, // fix to NEXT_PUBLIC_
-  withCredentials: true,
+  baseURL: process.env.NEXT_PUBLIC_API_URL, // ✅ set in .env
+  withCredentials: true, // so cookies (refreshToken) go automatically
 });
 
-// Flag to avoid multiple refresh requests
 let isRefreshing = false;
 let failedQueue = [];
 
@@ -114,37 +198,31 @@ const processQueue = (error, token = null) => {
   failedQueue = [];
 };
 
-// 🔹 Request Interceptor
+// Request interceptor → always attach accessToken
 api.interceptors.request.use(
   (config) => {
-    useLoadingStore.getState().setLoading(true); // ✅ show loader
-    const token = useAuthStore.getState().accessToken;
-    if (token) config.headers["Authorization"] = `Bearer ${token}`;
+    const { accessToken } = useAuthStore.getState();
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
     return config;
   },
-  (error) => {
-    useLoadingStore.getState().setLoading(false); // ✅ hide on error
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// 🔹 Response Interceptor
+// Response interceptor → auto refresh expired tokens
 api.interceptors.response.use(
-  (response) => {
-    useLoadingStore.getState().setLoading(false); // ✅ hide loader
-    return response;
-  },
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    useLoadingStore.getState().setLoading(false); // ✅ hide loader even on error
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 || error.response?.data?.message === 'jwt expired' && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })
           .then((token) => {
-            originalRequest.headers["Authorization"] = `Bearer ${token}`;
+            originalRequest.headers.Authorization = `Bearer ${token}`;
             return api(originalRequest);
           })
           .catch((err) => Promise.reject(err));
@@ -154,27 +232,32 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshToken = useAuthStore.getState().refreshToken;
+        // Call refresh endpoint
         const { data } = await axios.post(
           `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
-          { token: refreshToken },
+          {},
           { withCredentials: true }
         );
 
-        // Save new tokens
-        useAuthStore.getState().setTokens({
-          accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
+        const newAccessToken = data.accessToken;
+        const authStore = useAuthStore.getState();
+
+        authStore.setTokens({
+          accessToken: newAccessToken,
+          refreshToken: authStore.refreshToken, // keep same refreshToken
         });
 
-        api.defaults.headers.common["Authorization"] =
-          "Bearer " + data.accessToken;
+        api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
 
-        processQueue(null, data.accessToken);
+        processQueue(null, newAccessToken);
+
         return api(originalRequest);
       } catch (err) {
         processQueue(err, null);
-        useAuthStore.getState().logout();
+        useAuthStore.getState().logout(); // clear store
+        if (typeof window !== "undefined") {
+          window.location.href = "/login";
+        }
         return Promise.reject(err);
       } finally {
         isRefreshing = false;

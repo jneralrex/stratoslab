@@ -140,11 +140,28 @@ export async function resendOtp() {
 }
 
 //  Login User
+// export async function logUserIn({ email, password }) {
+//   try {
+//     const { data } = await api.post("auth/signin", { email, password });
+
+//     console.log(data);
+
+//     useAuthStore.getState().setTokens({
+//       accessToken: data.accessToken,
+//       refreshToken: data.refreshToken,
+//     });
+//     useAuthStore.getState().setUser(data.user);
+
+//     return data.user;
+//   } catch (err) {
+//     console.error("Login failed:", err.response?.data || err.message);
+//     throw err;
+//   }
+// }
+
 export async function logUserIn({ email, password }) {
   try {
-    const { data } = await api.post("auth/signin", { email, password });
-
-    console.log(data);
+    const { data } = await api.post("/auth/signin", { email, password });
 
     useAuthStore.getState().setTokens({
       accessToken: data.accessToken,
@@ -248,5 +265,56 @@ export async function getAllUsers(page = 1, limit = 10) {
     throw err;
   }
 }
+
+
+
+// ================= STUDENT TRANSACTION ENDPOINTS =================
+
+// Create Transaction (upload receipt)
+export async function createTransaction(formData) {
+  try {
+    const { data } = await api.post("/transactions", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return data;
+  } catch (err) {
+    console.error("Failed to create transaction:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+// Get all transactions for logged-in student
+export async function getMyTransactions() {
+  try {
+    const { data } = await api.get("/transactions/user/me");
+    return data.transactions;
+  } catch (err) {
+    console.error("Failed to fetch my transactions:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+// Update a transaction
+export async function updateTransaction(transactionId, payload) {
+  try {
+    const { data } = await api.put(`/transactions/${transactionId}`, payload);
+    return data;
+  } catch (err) {
+    console.error("Failed to update transaction:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+// Delete a transaction
+// export async function deleteTransaction(transactionId) {
+//   try {
+//     const { data } = await api.delete(`/transactions/${transactionId}`);
+//     return data;
+//   } catch (err) {
+//     console.error("Failed to delete transaction:", err.response?.data || err.message);
+//     throw err;
+//   }
+// }
+
 
 

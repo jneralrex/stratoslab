@@ -1,93 +1,180 @@
+
+
 "use client";
+import { useEffect, useState } from "react";
+import {
+  getMyTransactions,
+  createTransaction,
+  deleteTransaction,
+} from "@/utils/axios/endPoints";
 import useAuthStore from "@/utils/store/useAuthStore";
-import Link from "next/link";
 
+export default function StudentTransactions() {
+  const [transactions, setTransactions] = useState([]);
+  const [amount, setAmount] = useState("");
+  const [receipt, setReceipt] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showForm, setShowForm] = useState(false); // 👈 controls form visibility
+const { user } = useAuthStore();
+  // Fetch student's transactions
+  const loadTransactions = async () => {
+    try {
+      setLoading(true);
+      const res = await getMyTransactions();
+      setTransactions(res);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-export default function StudentDashboard() {
-  const { user } = useAuthStore();
+  useEffect(() => {
+    loadTransactions();
+  }, []);
+
+  // Handle new transaction
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!amount || !receipt) return alert("Please enter amount and upload receipt");
+
+    try {
+      const formData = new FormData();
+      formData.append("amount", amount);
+      formData.append("receipt", receipt);
+
+      await createTransaction(formData);
+      alert("Transaction submitted successfully");
+      setAmount("");
+      setReceipt(null);
+      setShowForm(false); // 👈 hide form after submit
+      loadTransactions();
+    } catch (err) {
+      alert("Failed to submit transaction");
+    }
+  };
+
+  // Handle delete
+  const handleDelete = async (id) => {
+    if (!confirm("Are you sure you want to delete this transaction?")) return;
+    try {
+      await deleteTransaction(id);
+      loadTransactions();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 p-6 dark:bg-gray-900 text-gray-900 dark:text-white">
-      {/* Welcome */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold">Welcome back, {user?.username} 👋</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">You have 2 unread notifications</p>
-      </div>
+    <div className="p-6 bg-gray-100 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
 
-      {/* Grid Layout */}
-      <div className="grid md:grid-cols-2 gap-6">
-        {/* Enrolled Courses */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">🎓 Enrolled Courses</h2>
-          <ul className="space-y-3">
-            <li className="flex justify-between items-center">
-              <span>Web Development Bootcamp</span>
-              <span className="text-sm text-green-500">In Progress</span>
-            </li>
-            <li className="flex justify-between items-center">
-              <span>AI Fundamentals</span>
-              <span className="text-sm text-yellow-500">Starts Soon</span>
-            </li>
-            <li className="flex justify-between items-center">
-              <span>Community Management</span>
-              <span className="text-sm text-blue-500">Active</span>
-            </li>
-          </ul>
-        </div>
+  <h1 className="text-3xl font-bold">Welcome back, {user?.username} 👋</h1>
+      <h1 className="text-2xl font-bold mb-6">💳 My Transactions</h1>
 
-        {/* Upcoming */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">📅 Upcoming Sessions</h2>
-          <ul className="space-y-3">
-            <li>
-              <strong>React Class</strong> – Monday 10 AM
-            </li>
-            <li>
-              <strong>Assignment #3</strong> – Due Wednesday
-            </li>
-          </ul>
-        </div>
+      {/* Button to toggle upload form */}
+      <button
+        onClick={() => setShowForm(!showForm)}
+        className="mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+      >
+        {showForm ? "Cancel Upload" : "➕ New Transaction"}
+      </button>
 
-        {/* Announcements */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 col-span-2">
-          <h2 className="text-xl font-semibold mb-4">📢 Announcements</h2>
-          <ul className="space-y-2 list-disc list-inside text-sm">
-            <li>Live session postponed to Friday 4PM.</li>
-            <li>New resource uploaded for Week 4.</li>
-          </ul>
-        </div>
+      {/* Conditionally Render Upload Transaction Form */}
+      {showForm && (
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 mb-8"
+        >
+          <h2 className="text-lg font-semibold mb-4">Upload New Transaction</h2>
+          <div className="mb-4">
+            <label className="block mb-2">Amount</label>
+            <input
+              type="number"
+              className="w-full border rounded p-2"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2">Receipt</label>
+            <input
+              type="file"
+              onChange={(e) => setReceipt(e.target.files[0])}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Submit Transaction
+          </button>
+        </form>
+      )}
 
-        {/* Certificates */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">🧾 Certificates</h2>
-          <ul className="space-y-2">
-            <li className="flex justify-between">
-              <span>Web Development</span>
-              <Link href="/certificates/web-dev.pdf" className="text-blue-500 hover:underline">
-                Download
-              </Link>
-            </li>
-            <li className="flex justify-between">
-              <span>Community Management</span>
-              <span className="text-yellow-500">In Progress</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Settings */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">⚙️ Account Settings</h2>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link href="/profile" className="text-blue-500 hover:underline">Update Profile</Link>
-            </li>
-            <li>
-              <Link href="/change-password" className="text-blue-500 hover:underline">Change Password</Link>
-            </li>
-            <li>
-              <Link href="/logout" className="text-red-500 hover:underline">Logout</Link>
-            </li>
-          </ul>
-        </div>
+      {/* Transactions Table */}
+      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+        <h2 className="text-lg font-semibold mb-4">My Transaction History</h2>
+        {loading ? (
+          <p>Loading...</p>
+        ) : transactions.length > 0 ? (
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-gray-200 dark:bg-gray-700">
+                <th className="p-2 border">Course</th>
+                <th className="p-2 border">Amount</th>
+                <th className="p-2 border">Status</th>
+                <th className="p-2 border">Receipt</th>
+                <th className="p-2 border">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((tx) => (
+                <tr key={tx._id} className="text-center">
+                  <td className="p-2 border">{tx.course}</td>
+                  <td className="p-2 border">${tx.amount}</td>
+                  <td
+                    className={`p-2 border font-semibold ${
+                      tx.status === "confirmed"
+                        ? "text-green-500"
+                        : tx.status === "rejected"
+                        ? "text-red-500"
+                        : "text-yellow-500"
+                    }`}
+                  >
+                    {tx.status || "pending"} 
+                  </td>
+                  <td className="p-2 border">
+                    {tx.receipt?.url ? (
+                      <a
+                        href={tx.receipt.url}
+                        target="_blank"
+                        className="text-blue-600 underline"
+                      >
+                        View
+                      </a>
+                    ) : (
+                      "No receipt"
+                    )}
+                  </td>
+                  <td className="p-2 border">
+                    {tx.status === "pending" && (
+                      <button
+                        onClick={() => handleDelete(tx._id)}
+                        className="text-red-600 hover:underline"
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No transactions found</p>
+        )}
       </div>
     </div>
   );
