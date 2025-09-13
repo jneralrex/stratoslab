@@ -184,8 +184,8 @@ import axios from "axios";
 import useAuthStore from "../store/useAuthStore";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true, // 🔑 allows sending refreshToken cookie
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true, // allows sending refreshToken cookie
 });
 
 let isRefreshing = false;
@@ -231,9 +231,9 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        // 🔑 call refresh endpoint (cookie auto-sent)
+        //  call refresh endpoint (cookie auto-sent)
         const { data } = await axios.post(
-          `${import.meta.env.VITE_API_URL}/auth/refresh-token`,
+           `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
           {},
           { withCredentials: true }
         );
