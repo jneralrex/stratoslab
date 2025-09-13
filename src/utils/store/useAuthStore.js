@@ -45,8 +45,8 @@ const useAuthStore = create(
       email: null,
 
       // Actions
-      setTokens: ({ accessToken, refreshToken }) =>
-        set({ accessToken, refreshToken }),
+      setTokens: ({ accessToken }) =>
+        set({ accessToken }),
       setUser: (user) => set({ user }),
       setEmail: (email) => set({ email }),
       setMessage: (message) => set({ message }),

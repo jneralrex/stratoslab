@@ -179,12 +179,13 @@
 
 
 
+// lib/axios.js
 import axios from "axios";
 import useAuthStore from "../store/useAuthStore";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL, // ✅ set in .env
-  withCredentials: true, // so cookies (refreshToken) go automatically
+  baseURL: import.meta.env.VITE_API_URL,
+  withCredentials: true, // 🔑 allows sending refreshToken cookie
 });
 
 let isRefreshing = false;
@@ -198,25 +199,23 @@ const processQueue = (error, token = null) => {
   failedQueue = [];
 };
 
-// Request interceptor → always attach accessToken
+// Attach access token
 api.interceptors.request.use(
   (config) => {
-    const { accessToken } = useAuthStore.getState();
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
+    const token = useAuthStore.getState().accessToken;
+    if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// Response interceptor → auto refresh expired tokens
+// Handle expired access token
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 || error.response?.data?.message === 'jwt expired' && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
@@ -232,32 +231,24 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        // Call refresh endpoint
+        // 🔑 call refresh endpoint (cookie auto-sent)
         const { data } = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
+          `${import.meta.env.VITE_API_URL}/auth/refresh-token`,
           {},
           { withCredentials: true }
         );
 
-        const newAccessToken = data.accessToken;
-        const authStore = useAuthStore.getState();
+        useAuthStore.getState().setTokens({ accessToken: data.accessToken });
 
-        authStore.setTokens({
-          accessToken: newAccessToken,
-          refreshToken: authStore.refreshToken, // keep same refreshToken
-        });
+        api.defaults.headers.common["Authorization"] =
+          "Bearer " + data.accessToken;
 
-        api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
-
-        processQueue(null, newAccessToken);
-
+        processQueue(null, data.accessToken);
         return api(originalRequest);
       } catch (err) {
         processQueue(err, null);
-        useAuthStore.getState().logout(); // clear store
-        if (typeof window !== "undefined") {
-          window.location.href = "/login";
-        }
+        useAuthStore.getState().logout();
+        window.location.href = "/login";
         return Promise.reject(err);
       } finally {
         isRefreshing = false;
