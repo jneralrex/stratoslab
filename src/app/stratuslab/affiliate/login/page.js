@@ -14,7 +14,7 @@ export default function LoginPage() {
   const onSubmit = async (formData) => {
     try {
       await logUserIn(formData)
-      router.push("/affiliate/dashboard") 
+      router.push("/stratuslab/affiliate/dashboard") 
     } catch (error) {
       alert("Login failed: " + (error.response?.data?.message || error.message))
     }

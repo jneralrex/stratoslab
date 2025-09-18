@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import AllUsers from './all-users/page.js';
 import AllTransactions from './all-transactions/page.js';
+import RegisterPage from './admin-reg-user/page.js';
 import useAuthStore from '@/utils/store/useAuthStore.js';
 
 const DashboardLayout = () => {
@@ -64,6 +65,14 @@ const DashboardLayout = () => {
               All Transactions
             </button>
           </li>
+          <li className="mb-4">
+            <button
+              className={`text-gray-600 hover:text-gray-900 ${activeComponent === 'regUser' ? 'font-bold' : ''}`}
+              onClick={() => handleComponentChange('regUser')}
+            >
+              Register User
+            </button>
+          </li>
         </ul>
       </aside>
       {/* Overlay for mobile sidebar */}
@@ -77,6 +86,7 @@ const DashboardLayout = () => {
       <main className="flex-1 md:w-4/5 md:ml-0 ml-0 mt-0 md:mt-0">
         {activeComponent === 'allUsers' && <AllUsers />}
         {activeComponent === 'allTransactions' && <AllTransactions />}
+        {activeComponent === 'regUser' && <RegisterPage />}
       </main>
     </div>
   );
