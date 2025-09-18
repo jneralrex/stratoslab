@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -50,7 +49,7 @@ export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* 🔹 Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-black px-6 py-20 text-center">
+      <section className="bg-gradient-to-br from-gray-900 to-black px-6 py-20 text-center relative">
         <button
           onClick={() => router.back()}
           className="absolute top-6 left-6 text-green-400 hover:underline flex items-center gap-2"
@@ -66,15 +65,25 @@ export default function CoursesPage() {
           <span className="text-green-400">tech, business, and community growth</span>.  
           Gain hands-on skills and take your career to the next level.
         </p>
-        <Link
-          href="#courses"
-          className="bg-green-500 px-8 py-3 rounded-lg font-semibold text-black hover:bg-green-400 transition"
-        >
-          Browse Courses
-        </Link>
+
+        {/* CTA Buttons */}
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Link
+            href="#courses"
+            className="bg-green-500 px-8 py-3 rounded-lg font-semibold text-black hover:bg-green-400 transition"
+          >
+            Browse Courses
+          </Link>
+          <Link
+            href="/stratuslab/student/login"
+            className="bg-transparent border border-green-400 px-8 py-3 rounded-lg font-semibold text-green-400 hover:bg-green-400 hover:text-black transition"
+          >
+            Login
+          </Link>
+        </div>
       </section>
 
-      {/* 🔹 Why Learn With Us */}
+      {/* Why Learn With Us */}
       <section className="py-16 max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
         <div className="bg-[#1f1f1f] p-6 rounded-lg border border-gray-700">
           <h3 className="text-xl font-semibold text-green-400 mb-2">🎯 Practical Skills</h3>
@@ -90,7 +99,7 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      {/* 🔹 Courses Grid */}
+      {/* Courses Grid */}
       <section id="courses" className="py-20 px-6">
         <h2 className="text-4xl font-bold text-center mb-12">Our Courses</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -121,18 +130,27 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      {/* 🔹 Call to Action */}
+      {/* Call to Action */}
       <section className="bg-gradient-to-r from-green-500 to-blue-600 py-12 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
           Ready to Level Up Your Skills?
         </h2>
         <p className="text-black mb-6">Join thousands of learners already transforming their careers.</p>
-        <Link
-          href="#courses"
-          className="bg-black px-8 py-3 rounded-lg font-semibold text-white hover:bg-gray-800 transition"
-        >
-          Get Started
-        </Link>
+
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Link
+            href="#courses"
+            className="bg-black px-8 py-3 rounded-lg font-semibold text-white hover:bg-gray-800 transition"
+          >
+            Get Started
+          </Link>
+          <Link
+            href="/stratuslab/student/login"
+            className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition"
+          >
+            Login to Continue
+          </Link>
+        </div>
       </section>
     </div>
   );
