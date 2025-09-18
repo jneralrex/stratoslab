@@ -44,7 +44,7 @@ export default function AffiliateLandingPage() {
         
 
         <div className="mt-12 text-sm text-gray-500">
-          Earn up to <span className="text-green-400 font-bold">$100</span> per user who buys a course. No limits.
+          Earn up to <span className="text-green-400 font-bold">Earn 10%</span> per user who buys a course. No limits.
         </div>
       </div>
     </motion.div>

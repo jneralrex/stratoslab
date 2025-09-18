@@ -278,9 +278,6 @@ export default function Home() {
             alt="Stratos lab logo"
             width={50}
             height={50}
-            // className="w-28 lg:w-30"
-            // className="w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36"
-            //  sizes="(max-width: 768px) 180px, (max-width: 1024px) 100px, 150px"
              className="h-auto w-auto"
 
           />{" "}
@@ -304,7 +301,7 @@ export default function Home() {
               </a>
             </div>
             <div className="cursor-pointer">
-              <Link href="/stratuslab/student/courses" aria-label="Explore our Courses">
+              <Link href="/stratuslab/student" aria-label="Explore our Courses">
                 Join Our Classes
               </Link>
             </div>
