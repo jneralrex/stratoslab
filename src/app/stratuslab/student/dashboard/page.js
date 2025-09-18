@@ -42,6 +42,7 @@ const { user } = useAuthStore();
       const formData = new FormData();
       formData.append("amount", amount);
       formData.append("receipt", receipt);
+      formData.append("studentId", user?._id);
 
       await createTransaction(formData);
       alert("Transaction submitted successfully");
