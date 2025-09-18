@@ -8,7 +8,7 @@ import { regAdmin } from '@/utils/axios/endPoints'
 import { useEffect, useState } from 'react'
 
 export default function RegisterPage() {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, watch, setValue } = useForm()
 
   const { loading } = useLoadingStore();
   const [countries, setCountries] = useState([]);
@@ -87,18 +87,7 @@ export default function RegisterPage() {
           />
         </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-            Phone Number
-          </label>
-          <input
-            type="text"
-            {...register("phoneNumber")}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-            required
-          />
-        </div>
-
+        {/* Country of Residence */}
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-2">
             Country of Residence
@@ -120,6 +109,18 @@ export default function RegisterPage() {
               ))}
             </select>
           )}
+        </div>
+
+        {/* Phone Number */}
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-2">Phone Number</label>
+          <input
+            type="text"
+            {...register("phoneNumber")}
+            placeholder="e.g. +234 8012345678"
+            className="w-full px-4 py-2 rounded-md border"
+            required
+          />
         </div>
 
 

@@ -8,7 +8,7 @@ import { regAffiliate } from '@/utils/axios/endPoints'
 import { useEffect, useState } from 'react'
 
 export default function RegisterPage() {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, watch, setValue } = useForm()
 
   const { loading } = useLoadingStore();
   const [countries, setCountries] = useState([]);
@@ -17,41 +17,41 @@ export default function RegisterPage() {
 
   const router = useRouter();
 
-    // ✅ Fetch countries
-    useEffect(() => {
-      async function fetchCountries() {
-        try {
-          const res = await fetch(
-            "https://restcountries.com/v3.1/all?fields=name,flags,idd"
-          );
-          const data = await res.json();
-  
-          const formatted = data.map((c) => ({
-            name: c.name.common,
-            flag: c.flags?.png,
-            code: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
-          }));
-  
-          formatted.sort((a, b) => a.name.localeCompare(b.name));
-          setCountries(formatted);
-        } catch (err) {
-          console.error("Failed to fetch countries", err);
-        } finally {
-          setLoadingCountries(false);
-        }
+// Fetch countries
+  useEffect(() => {
+    async function fetchCountries() {
+      try {
+        const res = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,flags,idd"
+        );
+        const data = await res.json();
+
+        const formatted = data.map((c) => ({
+          name: c.name.common,
+          flag: c.flags?.png,
+          code: c.idd?.root ? c.idd.root + (c.idd.suffixes?.[0] || "") : "",
+        }));
+
+        formatted.sort((a, b) => a.name.localeCompare(b.name));
+        setCountries(formatted);
+      } catch (err) {
+        console.error("Failed to fetch countries", err);
+      } finally {
+        setLoadingCountries(false);
       }
+    }
+
+    fetchCountries();
+  }, []);
   
-      fetchCountries();
-    }, []);
-  
-    // Handle country selection → auto-fill phone code
-    const handleCountryChange = (e) => {
-      const selected = countries.find((c) => c.name === e.target.value);
-      if (selected?.code) {
-        setPhoneCode(selected.code);
-        setValue("phoneNumber", selected.code + " "); 
-      }
-    };
+   //  Handle country selection → auto-fill phone code
+  const handleCountryChange = (e) => {
+    const selected = countries.find((c) => c.name === e.target.value);
+    if (selected?.code) {
+      setPhoneCode(selected.code);
+      setValue("phoneNumber", selected.code + " "); // Pre-fill with code
+    }
+  };
 
   const onSubmit = async (formData) => {
     try {
@@ -87,19 +87,8 @@ export default function RegisterPage() {
           />
         </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-            Phone Number
-          </label>
-          <input
-            type="text"
-            {...register("phoneNumber")}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-            required
-          />
-        </div>
 
-          {/* Country of Residence */}
+       {/* Country of Residence */}
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-2">
             Country of Residence
@@ -121,6 +110,18 @@ export default function RegisterPage() {
               ))}
             </select>
           )}
+        </div>
+
+        {/* Phone Number */}
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-2">Phone Number</label>
+          <input
+            type="text"
+            {...register("phoneNumber")}
+            placeholder="e.g. +234 8012345678"
+            className="w-full px-4 py-2 rounded-md border"
+            required
+          />
         </div>
 
 

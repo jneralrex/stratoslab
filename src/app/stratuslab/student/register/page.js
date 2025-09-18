@@ -47,7 +47,7 @@ function RegisterForm() {
   }, [selectedCourse, setValue]);
 
 
-  // ✅ Fetch countries
+  // Fetch countries
   useEffect(() => {
     async function fetchCountries() {
       try {
@@ -89,7 +89,7 @@ function RegisterForm() {
     }
   };
 
-  // ✅ Handle country selection → auto-fill phone code
+  //  Handle country selection → auto-fill phone code
   const handleCountryChange = (e) => {
     const selected = countries.find((c) => c.name === e.target.value);
     if (selected?.code) {
@@ -98,7 +98,7 @@ function RegisterForm() {
     }
   };
 
-  // ✅ Password rules
+  // Password rules
   const passwordRules = [
     { label: "At least 8 characters", test: /.{8,}/ },
     { label: "1 uppercase letter", test: /[A-Z]/ },
