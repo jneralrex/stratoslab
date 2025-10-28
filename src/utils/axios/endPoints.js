@@ -176,6 +176,30 @@ export async function logUserIn({ email, password }) {
   }
 }
 
+export async function logStudent({ email, password }) {
+  try {
+    const { data } = await api.post("/auth/signin", { email, password });
+
+    if (data.user.role !== "student") {
+      alert("Student only");
+      return null; 
+    }
+
+    useAuthStore.getState().setTokens({
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+    });
+
+    useAuthStore.getState().setUser(data.user);
+
+    return data.user; 
+  } catch (err) {
+    console.error("Login failed:", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+
 //  Get Earnings
 export async function getAffiliateEarnings() {
   try {

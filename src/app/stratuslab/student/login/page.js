@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import useLoadingStore from "@/utils/store/useLoading";
-import { logUserIn } from "@/utils/axios/endPoints";
+import { logStudent} from "@/utils/axios/endPoints";
 
 export default function LoginPage() {
 const { register, handleSubmit } = useForm();
@@ -14,14 +14,18 @@ const { register, handleSubmit } = useForm();
 
   const router = useRouter();
 
-  const onSubmit = async (formData) => {
-    try {
-      await logUserIn(formData)
-      router.push("/stratuslab/student/dashboard") 
-    } catch (error) {
-      alert("Login failed: " + (error.response?.data?.message || error.message))
-    }
+ const onSubmit = async (formData) => {
+  try {
+    const user = await logStudent(formData);  
+
+    if (!user) return; 
+
+    router.push("/stratuslab/student/dashboard"); 
+  } catch (error) {
+    alert("Login failed: " + (error.response?.data?.message || error.message));
   }
+};
+
 
   return (
     <motion.div

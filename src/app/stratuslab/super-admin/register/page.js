@@ -17,7 +17,7 @@ export default function RegisterPage() {
 
   const router = useRouter()
 
-  // ✅ Fetch countries
+  // Fetch countries
   useEffect(() => {
     async function fetchCountries() {
       try {
@@ -44,7 +44,7 @@ export default function RegisterPage() {
     fetchCountries();
   }, []);
 
-  // ✅ Handle country selection → auto-fill phone code
+  // Handle country selection → auto-fill phone code
   const handleCountryChange = (e) => {
     const selected = countries.find((c) => c.name === e.target.value);
     if (selected?.code) {
@@ -56,7 +56,7 @@ export default function RegisterPage() {
   const onSubmit = async (formData) => {
     try {
       await regAdmin(formData)
-      router.push("/super-admin/verify-otp")
+      router.push("/stratuslab/super-admin/verify-otp")
     } catch (error) {
       alert("Login failed: " + (error.response?.data?.message || error.message))
     }
