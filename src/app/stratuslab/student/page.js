@@ -75,7 +75,7 @@ export default function CoursesPage() {
             Browse Courses
           </Link>
           <Link
-            href="/stratuslab/student/login"
+            href="/trustedtek/student/login"
             className="bg-transparent border border-green-400 px-8 py-3 rounded-lg font-semibold text-green-400 hover:bg-green-400 hover:text-black transition"
           >
             Login
@@ -120,7 +120,7 @@ export default function CoursesPage() {
               <h2 className="text-2xl font-bold mb-2">{course.title}</h2>
               <p className="text-gray-300 mb-4">{course.description}</p>
               <Link
-                href={`/stratuslab/student/courses/${course.slug}`}
+                href={`/trustedtek/student/courses/${course.slug}`}
                 className="text-green-400 hover:underline"
               >
                 View Course →
@@ -145,7 +145,7 @@ export default function CoursesPage() {
             Get Started
           </Link>
           <Link
-            href="/stratuslab/student/login"
+            href="/trustedtek/student/login"
             className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition"
           >
             Login to Continue

@@ -20,7 +20,7 @@ const { register, handleSubmit } = useForm();
 
     if (!user) return; 
 
-    router.push("/stratuslab/student/dashboard"); 
+    router.push("/trustedtek/student/dashboard"); 
   } catch (error) {
     alert("Login failed: " + (error.response?.data?.message || error.message));
   }
@@ -78,7 +78,7 @@ const { register, handleSubmit } = useForm();
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Don`&apos;`t have an account?{" "}
             <Link
-              href="/stratuslab/student/register"
+              href="/trustedtek/student/register"
               className="text-blue-500 hover:underline"
             >
               Register

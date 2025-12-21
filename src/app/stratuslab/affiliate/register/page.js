@@ -56,7 +56,7 @@ export default function RegisterPage() {
   const onSubmit = async (formData) => {
     try {
       await regAffiliate(formData)
-      router.push("/stratuslab/affiliate/verify-otp")
+      router.push("/trustedtek/affiliate/verify-otp")
     } catch (error) {
       alert("Login failed: " + (error.response?.data?.message || error.message))
     }
@@ -171,7 +171,7 @@ export default function RegisterPage() {
         </button>
 
         <p className="text-sm mt-4 text-center text-gray-600 dark:text-gray-400">
-          Already have an account? <a href="/stratuslab/affiliate/login" className="text-blue-500 hover:underline">Login</a>
+          Already have an account? <a href="/trustedtek/affiliate/login" className="text-blue-500 hover:underline">Login</a>
         </p>
       </form>
     </motion.div>

@@ -82,7 +82,7 @@ function RegisterForm() {
     try {
       console.log(formData)
       await regStudent({ ...formData, course: formData.course || selectedCourse, ref: ref });
-      router.push("/stratuslab/student/verify-otp");
+      router.push("/trustedtek/student/verify-otp");
     } catch (error) {
       console.log(error)
       alert("Signup failed: " + (error.response?.data?.message || error.message));
@@ -331,7 +331,7 @@ function RegisterForm() {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link href="/stratuslab/student/login" className="text-blue-500 hover:underline">
+            <Link href="/trustedtek/student/login" className="text-blue-500 hover:underline">
               Login
             </Link>
           </p>

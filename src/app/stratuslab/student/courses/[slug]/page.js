@@ -72,7 +72,7 @@ export default function CourseDetailPage() {
   }
 
   const handleRegister = () => {
-  router.push(`/stratuslab/student/register?course=${course.slug}`);
+  router.push(`/trustedtek/student/register?course=${course.slug}`);
 };
 
 

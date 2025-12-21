@@ -5,11 +5,11 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: "What services does Stratuslab offer?",
-      answer: "Stratuslab offers services such as UI/UX design, full-stack development, token creation, and social media management.",
+      question: "What services does Trustedtek offer?",
+      answer: "Trustedtek offers services such as UI/UX design, full-stack development, token creation, and social media management.",
     },
     {
-      question: "How can I contact Stratuslab?",
+      question: "How can I contact Trustedtek?",
       answer: "You can contact us through our website's contact form or by booking a call directly.",
     },
     {

@@ -15,30 +15,30 @@ const geistMono = Geist_Mono({
 });
 
 // export const metadata = {
-//   title: "Stratuslab - Premium Web3 Design & Development",
+//   title: "trustedtek - Premium Web3 Design & Development",
 //   description:
-//     "Stratuslab offers premium design and development services trusted by Web3 founders.",
+//     "trustedtek offers premium design and development services trusted by Web3 founders.",
 //   metadataBase: new URL("https://stratoslab.vercel.app"),
 //   openGraph: {
 //     type: "website",
-//     title: "Stratuslab - Premium Web3 Design & Development",
+//     title: "trustedtek - Premium Web3 Design & Development",
 //     description:
-//       "Stratuslab offers premium design and development services trusted by Web3 founders.",
+//       "trustedtek offers premium design and development services trusted by Web3 founders.",
 //     url: "https://stratoslab.vercel.app",
 //     images: [
 //       {
 //         url: "/logo.png",
 //         width: 1200,
 //         height: 630,
-//         alt: "Stratuslab - Premium Web3 Design & Development",
+//         alt: "trustedtek - Premium Web3 Design & Development",
 //       },
 //     ],
 //   },
 //   twitter: {
 //     card: "summary_large_image",
-//     title: "Stratuslab - Premium Web3 Design & Development",
+//     title: "trustedtek - Premium Web3 Design & Development",
 //     description:
-//       "Stratuslab offers premium design and development services trusted by Web3 founders.",
+//       "trustedtek offers premium design and development services trusted by Web3 founders.",
 //     images: ["/logo.png"],
 //   },
 //   icons: {
@@ -73,30 +73,30 @@ const geistMono = Geist_Mono({
 
 
 export const metadata = {
-  title: "Stratuslab - Premium Web3 Design & Development",
+  title: "trustedtek - Premium Web3 Design & Development",
   description:
-    "Stratuslab offers premium design and development services trusted by Web3 founders.",
+    "trustedtek offers premium design and development services trusted by Web3 founders.",
   metadataBase: new URL("https://stratoslab.vercel.app"),
   openGraph: {
     type: "website",
-    title: "Stratuslab - Premium Web3 Design & Development",
+    title: "trustedtek - Premium Web3 Design & Development",
     description:
-      "Stratuslab offers premium design and development services trusted by Web3 founders.",
+      "trustedtek offers premium design and development services trusted by Web3 founders.",
     url: "https://stratoslab.vercel.app",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Stratuslab - Premium Web3 Design & Development",
+        alt: "trustedtek - Premium Web3 Design & Development",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stratuslab - Premium Web3 Design & Development",
+    title: "trustedtek - Premium Web3 Design & Development",
     description:
-      "Stratuslab offers premium design and development services trusted by Web3 founders.",
+      "trustedtek offers premium design and development services trusted by Web3 founders.",
     images: ["/logo.png"],
   },
   icons: {
@@ -149,13 +149,13 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Stratuslab",
+              name: "trustedtek",
               url: "https://stratoslab.vercel.app/",
               description:
-                "Stratuslab offers premium design and development services trusted by Web3 founders.",
+                "trustedtek offers premium design and development services trusted by Web3 founders.",
               publisher: {
                 "@type": "Organization",
-                name: "Stratuslab",
+                name: "trustedtek",
                 logo: "https://stratoslab.vercel.app/logo.png",
               },
             }),

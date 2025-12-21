@@ -14,7 +14,7 @@ export default function LoginPage() {
   const onSubmit = async (formData) => {
     try {
       await logUserIn(formData)
-      router.push("/stratuslab/super-admin/dashboard") 
+      router.push("/trustedtek/super-admin/dashboard") 
     } catch (error) {
       alert("Login failed: " + (error.response?.data?.message || error.message))
     }
@@ -70,7 +70,7 @@ export default function LoginPage() {
         </button>
 
         <p className="text-sm mt-4 text-center text-gray-600 dark:text-gray-400">
-          Don&apos;t have an account? <a href="/stratuslab/affiliate/register" className="text-blue-500 hover:underline">Register</a>
+          Don&apos;t have an account? <a href="/trustedtek/affiliate/register" className="text-blue-500 hover:underline">Register</a>
         </p>
       </form>
     </motion.div>

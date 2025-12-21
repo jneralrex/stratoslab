@@ -15,7 +15,7 @@ export default function RegisterPage() {
   const onSubmit = async () => {
     try {
       await resendOtp()
-      router.push("/stratuslab/super-admin/verify-otp");
+      router.push("/trustedtek/super-admin/verify-otp");
     } catch (error) {
       alert("Login failed: " + (error.response?.data?.message || error.message))
     }

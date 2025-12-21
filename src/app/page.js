@@ -275,7 +275,7 @@ export default function Home() {
         <div className="flex justify-between items-center text-white  h-16">
           <Image
             src="/logo2.png"
-            alt="Stratos lab logo"
+            alt="Trustedtek lab logo"
             width={50}
             height={50}
              className="h-auto w-auto"
@@ -301,12 +301,12 @@ export default function Home() {
               </a>
             </div>
             <div className="cursor-pointer">
-              <Link href="/stratuslab/student" aria-label="Explore our Courses">
+              <Link href="/trustedtek/student" aria-label="Explore our Courses">
                 Join Our Classes
               </Link>
             </div>
             <div className="cursor-pointer">
-              <Link href="/stratuslab/affiliate" aria-label="Visit our Affiliate Program">
+              <Link href="/trustedtek/affiliate" aria-label="Visit our Affiliate Program">
                 Affiliate Program
               </Link>
             </div>
@@ -368,7 +368,7 @@ export default function Home() {
           id="services"
           className="text-2xl lg:text-6xl font-extrabold text-center mt-10 mb-10 max-w-[1240px] text-white w-[80%] mx-auto"
         >
-          Services we offer at Stratos lab
+          Services we offer at Trustedtek
         </h1>
         <div className="relative w-full lg:max-w-[90%] mx-auto overflow-hidden bg-[#4e3c70] rounded-lg">
           <div
@@ -574,7 +574,7 @@ export default function Home() {
         </div>
         <footer className="flex justify-center items-center gap-4 mt-10 bg-black p-5">
           <p className="text-[#b2aeb9] text-[12px] font-bold md:text-[20px]">
-            &copy; 2025 Stratos lab. All rights reserved.
+            &copy; 2025 Trustedtek lab. All rights reserved.
           </p>
         </footer>
       </div>
