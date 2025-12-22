@@ -18,13 +18,13 @@ const geistMono = Geist_Mono({
 //   title: "trustedtek - Premium Web3 Design & Development",
 //   description:
 //     "trustedtek offers premium design and development services trusted by Web3 founders.",
-//   metadataBase: new URL("https://stratoslab.vercel.app"),
+//   metadataBase: new URL("https://trustedtek.vercel.app/"),
 //   openGraph: {
 //     type: "website",
 //     title: "trustedtek - Premium Web3 Design & Development",
 //     description:
 //       "trustedtek offers premium design and development services trusted by Web3 founders.",
-//     url: "https://stratoslab.vercel.app",
+//     url: "https://trustedtek.vercel.app/",
 //     images: [
 //       {
 //         url: "/logo.png",
@@ -76,13 +76,13 @@ export const metadata = {
   title: "trustedtek - Premium Web3 Design & Development",
   description:
     "trustedtek offers premium design and development services trusted by Web3 founders.",
-  metadataBase: new URL("https://stratoslab.vercel.app"),
+  metadataBase: new URL("https://trustedtek.vercel.app/"),
   openGraph: {
     type: "website",
     title: "trustedtek - Premium Web3 Design & Development",
     description:
       "trustedtek offers premium design and development services trusted by Web3 founders.",
-    url: "https://stratoslab.vercel.app",
+    url: "https://trustedtek.vercel.app/",
     images: [
       {
         url: "/logo.png",
@@ -150,13 +150,13 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "trustedtek",
-              url: "https://stratoslab.vercel.app/",
+              url: "https://trustedtek.vercel.app/",
               description:
                 "trustedtek offers premium design and development services trusted by Web3 founders.",
               publisher: {
                 "@type": "Organization",
                 name: "trustedtek",
-                logo: "https://stratoslab.vercel.app/logo.png",
+                logo: "https://trustedtek.vercel.app/logo.png",
               },
             }),
           }}
