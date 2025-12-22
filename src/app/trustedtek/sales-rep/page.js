@@ -1,6 +1,7 @@
 'use client';
 
 import { getTransactionsByStatus, confirmTransaction, rejectTransaction } from "@/utils/axios/endPoints";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const SalesRepDashboard = () => {
@@ -183,7 +184,7 @@ const SalesRepDashboard = () => {
               {selectedTx.receipt?.url && (
                 <div className="mt-3">
                   <p className="font-medium">Receipt:</p>
-                  <img
+                  <Image
                     src={selectedTx.receipt.url}
                     alt="Receipt"
                     className="w-full h-40 object-cover rounded cursor-pointer"
@@ -206,7 +207,7 @@ const SalesRepDashboard = () => {
             >
               ✖
             </button>
-            <img src={preview} alt="Receipt" className="max-w-full h-auto rounded" />
+            <Image src={preview} alt="Receipt" className="max-w-full h-auto rounded" />
           </div>
         </div>
       )}

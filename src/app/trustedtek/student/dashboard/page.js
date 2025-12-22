@@ -38,7 +38,7 @@ export default function StudentTransactions() {
 
   useEffect(() => {
     loadTransactions();
-  }, []);
+  });
 
   // Handle new transaction
   const handleSubmit = async (e) => {

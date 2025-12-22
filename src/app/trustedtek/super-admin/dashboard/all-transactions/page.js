@@ -7,6 +7,7 @@ import {
   getAllTransactions,
   rejectTransaction,
 } from "@/utils/axios/endPoints";
+import Image from "next/image";
 
 export default function AllTransactions() {
   const [transactions, setTransactions] = useState([]);
@@ -25,9 +26,7 @@ export default function AllTransactions() {
     loadTransactions();
   }, []);
 
-  useEffect(() => {
-    applyFilters();
-  }, [transactions, statusFilter, search, dateFrom, dateTo]);
+ 
 
   async function loadTransactions() {
     try {
@@ -71,6 +70,10 @@ export default function AllTransactions() {
     setFiltered(data);
     setCurrentPage(1);
   }
+
+   useEffect(() => {
+    applyFilters();
+  }, [transactions, statusFilter, search, dateFrom, dateTo]);
 
   async function handleConfirm(id) {
     await confirmTransaction(id);
@@ -263,7 +266,7 @@ export default function AllTransactions() {
             >
               ✖
             </button>
-            <img src={preview} alt="Receipt" className="max-w-full h-auto" />
+            <Image src={preview} alt="Receipt" className="max-w-full h-auto" />
           </div>
         </div>
       )}
