@@ -161,7 +161,7 @@ export async function resendOtp() {
 
 export async function logUserIn({ email, password }) {
   try {
-    const { data } = await api.post("/auth/signin", { email, password });
+    const { data } = await api.post("auth/signin", { email, password });
 
     useAuthStore.getState().setTokens({
       accessToken: data.accessToken,
@@ -178,7 +178,7 @@ export async function logUserIn({ email, password }) {
 
 export async function logStudent({ email, password }) {
   try {
-    const { data } = await api.post("/auth/signin", { email, password });
+    const { data } = await api.post("auth/signin", { email, password });
 
     if (data.user.role !== "student") {
       alert("Student only");

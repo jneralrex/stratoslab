@@ -38,7 +38,7 @@ export default function StudentTransactions() {
 
   useEffect(() => {
     loadTransactions();
-  });
+  },[]);
 
   // Handle new transaction
   const handleSubmit = async (e) => {
@@ -95,13 +95,45 @@ export default function StudentTransactions() {
       )}
 
       {/* Welcome Section */}
-      <section className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold">
+      <section className="mb-8 md:flex sm:align-center md:justify-between">
+       <div className="">
+         <h1 className="text-2xl sm:text-3xl font-bold">
           Hey <span className="text-blue-600">{user?.username}</span>
         </h1>
         <p className="text-gray-500 dark:text-gray-400 mt-1">
           Manage your payments & transaction history here.
         </p>
+       </div>
+
+       <div>
+        Course: <span className="font-medium">{user?.course || "N/A"}</span>
+       </div>
+      </section>
+
+      {/* New Section for Group Links */}
+      <section className="mb-8 p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl">
+        <h2 className="text-xl font-bold mb-4">Stay Connected!</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">Join our community groups to get updates, discuss courses, and view your schedules.</p>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a
+            href="https://discord.gg/SaKm9fsYV"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg text-center transition-all duration-200 shadow-md flex items-center justify-center"
+          >
+            <img src="/discord.png" alt="Discord Logo" className="w-6 h-6 mr-2" />
+            <span>Join our Discord</span>
+          </a>
+          <a
+            href="https://t.me/STRATOS_LAB"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-center transition-all duration-200 shadow-md flex items-center justify-center"
+          >
+            <img src="/telegramlogo.svg" alt="Telegram Logo" className="w-6 h-6 mr-2" />
+            <span>Join our Telegram</span>
+          </a>
+        </div>
       </section>
 
       {/* Toggle Upload Form */}
@@ -110,7 +142,7 @@ export default function StudentTransactions() {
           onClick={handleToggleForm}
           className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg shadow transition-all duration-200"
         >
-          {showForm ? "Cancel" : "➕ New Transaction"}
+          {showForm ? "Cancel" : "Make New Transaction"}
         </button>
 
       </section>
