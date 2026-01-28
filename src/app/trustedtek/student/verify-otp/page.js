@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import useLoadingStore from '@/utils/store/useLoading'
 import { verifyOtp } from '@/utils/axios/endPoints'
+import Link from 'next/link'
 
 export default function RegisterPage() {
   const { register, handleSubmit } = useForm()
@@ -55,7 +56,7 @@ export default function RegisterPage() {
         </button>
 
         <p className="text-sm mt-4 text-center text-gray-600 dark:text-gray-400">
-         Didnt recieve OTP? <a href="/login" className="text-blue-500 hover:underline">Resend</a>
+         Didnt recieve OTP? <Link href="/trustedtek/affiliate/resend-otp" className="text-blue-500 hover:underline">Resend</Link>
         </p>
       </form>
     </motion.div>

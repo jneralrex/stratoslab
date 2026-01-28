@@ -55,7 +55,7 @@ export default function RegisterPage() {
         </button>
 
         <p className="text-sm mt-4 text-center text-gray-600 dark:text-gray-400">
-         Didnt recieve OTP? <a href="/login" className="text-blue-500 hover:underline">Resend</a>
+         Didnt recieve OTP? <Link href="/trustedtek/super-admin/resend-otp" className="text-blue-500 hover:underline">Resend</Link>
         </p>
       </form>
     </motion.div>

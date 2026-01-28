@@ -288,7 +288,7 @@ export async function createTransaction(formData) {
   }
 }
 
-// Get all transactions for logged-in student
+// Get all transactions for logged in student
 export async function getMyTransactions() {
   try {
     const { data } = await api.get("/transactions/user/me");
