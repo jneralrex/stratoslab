@@ -4,7 +4,7 @@ import api from "./axiosInstance";
 // Register Affiliate
 export async function regAffiliate({ fullName, username, email, phoneNumber, countryOfResidence, password }) {
   try {
-    const { data } = await api.post("auth/signup", {
+    const { data } = await api.post("/auth/signup", {
       fullName,
       username,
       email,
@@ -31,7 +31,7 @@ export async function regAffiliate({ fullName, username, email, phoneNumber, cou
 // Register Admin
 export async function regAdmin({ fullName, username, email, phoneNumber, countryOfResidence, password }) {
   try {
-    const { data } = await api.post("auth/signup", {
+    const { data } = await api.post("/auth/signup", {
       fullName,
       username,
       email,
@@ -57,7 +57,7 @@ export async function regAdmin({ fullName, username, email, phoneNumber, country
 //Reg by Admin
 export async function regByAdmin({ fullName, username, email, phoneNumber, role, countryOfResidence, password }) {
   try {
-    const { data } = await api.post("auth/signup", {
+    const { data } = await api.post("/auth/signup", {
       fullName,
       username,
       email,
@@ -80,7 +80,7 @@ export async function regByAdmin({ fullName, username, email, phoneNumber, role,
 // Register Student
 export async function regStudent({ fullName, username, email, phoneNumber, countryOfResidence, course, ref, password }) {
   try {
-    const { data } = await api.post("auth/signup", {
+    const { data } = await api.post("/auth/signup", {
       fullName,
       phoneNumber,
       countryOfResidence,
@@ -110,7 +110,7 @@ export async function verifyOtp({ otp }) {
 
     if (!email) throw new Error("No email found, Register first.");
 
-    const { data } = await api.post("auth/verify-otp", { email, otp });
+    const { data } = await api.post("/auth/verify-otp", { email, otp });
 
     console.log("OTP verified:", data);
 
@@ -128,7 +128,7 @@ export async function resendOtp() {
 
     if (!email) throw new Error("No email found, Register first.");
 
-    const { data } = await api.post("auth/resend-otp", { email });
+    const { data } = await api.post("/auth/resend-otp", { email });
 
     console.log("OTP verified:", data);
 
@@ -139,29 +139,10 @@ export async function resendOtp() {
   }
 }
 
-//  Login User
-// export async function logUserIn({ email, password }) {
-//   try {
-//     const { data } = await api.post("auth/signin", { email, password });
-
-//     console.log(data);
-
-//     useAuthStore.getState().setTokens({
-//       accessToken: data.accessToken,
-//       refreshToken: data.refreshToken,
-//     });
-//     useAuthStore.getState().setUser(data.user);
-
-//     return data.user;
-//   } catch (err) {
-//     console.error("Login failed:", err.response?.data || err.message);
-//     throw err;
-//   }
-// }
 
 export async function logUserIn({ email, password }) {
   try {
-    const { data } = await api.post("auth/signin", { email, password });
+    const { data } = await api.post("/auth/signin", { email, password });
 
     useAuthStore.getState().setTokens({
       accessToken: data.accessToken,
@@ -178,7 +159,7 @@ export async function logUserIn({ email, password }) {
 
 export async function logStudent({ email, password }) {
   try {
-    const { data } = await api.post("auth/signin", { email, password });
+    const { data } = await api.post("/auth/signin", { email, password });
 
     if (data.user.role !== "student") {
       alert("Student only");
@@ -203,7 +184,7 @@ export async function logStudent({ email, password }) {
 //  Get Earnings
 export async function getAffiliateEarnings() {
   try {
-    const { data } = await api.get("affiliate/earnings");
+    const { data } = await api.get("/affiliate/earnings");
     return data;
   } catch (err) {
     console.error("Failed to fetch earnings:", err.response?.data || err.message);
@@ -214,7 +195,7 @@ export async function getAffiliateEarnings() {
 //  Get Referrals
 export async function getAffiliateRefferals() {
   try {
-    const { data } = await api.get("affiliate/referrals");
+    const { data } = await api.get("/affiliate/referrals");
     return data;
   } catch (err) {
     console.error("Failed to fetch referrals:", err.response?.data || err.message);
