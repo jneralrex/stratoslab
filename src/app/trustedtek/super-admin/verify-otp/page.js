@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import useLoadingStore from '@/utils/store/useLoading'
 import { verifyOtp } from '@/utils/axios/endPoints'
+import Link from 'next/link'
 
 export default function RegisterPage() {
   const { register, handleSubmit } = useForm()
