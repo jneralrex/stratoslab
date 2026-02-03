@@ -44,6 +44,20 @@ export default function CoursesPage() {
       slug: "web3-marketing",
       image: "/images/courses/marketing.avif",
     },
+    {
+      title: "Forex",
+      description:
+        "Become proficient in currency trading strategies, market analysis, and risk management.",
+      slug: "forex",
+      image: "/images/courses/forex.avif",
+    },
+    {
+      title: "Animation & Illustration",
+      description:
+        "Learn the art of storytelling through motion graphics, character design, and visual effects.",
+      slug: "animation-and-illustration",
+      image: "/images/courses/animation.avif",
+    },
   ];
 
   return (

@@ -46,6 +46,20 @@ const courses = [
       "Master token economies, community growth hacks, and brand development for Web3.",
     image: "/images/courses/marketing.avif",
   },
+  {
+    slug: "forex",
+    title: "Forex",
+    description:
+      "Become proficient in currency trading strategies, market analysis, and risk management.",
+    image: "/images/courses/forex.avif",
+  },
+  {
+    slug: "animation-and-illustration",
+    title: "Animation & Illustration",
+    description:
+      "Learn the art of storytelling through motion graphics, character design, and visual effects.",
+    image: "/images/courses/animation.avif",
+  },
 ];
 
 export default function CourseDetailPage() {

@@ -28,7 +28,7 @@ export const metadata = {
     url: "https://www.trustedtek.org/",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo.webp",
         width: 1200,
         height: 630,
         alt: "trustedtek - Premium Web3 Design & Development",
@@ -40,23 +40,23 @@ export const metadata = {
     title: "trustedtek - Premium Web3 Design & Development",
     description:
       "trustedtek offers premium design and development services trusted by Web3 founders.",
-    images: ["/logo.png"],
+    images: ["/logo.webp"],
   },
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
+    icon: "/logo.webp",
+    shortcut: "/logo.webp",
     apple: [
-      { url: "/logo.png" },
-      { url: "/logo.png", sizes: "180x180" },
-      { url: "/logo.png", sizes: "167x167" },
-      { url: "/logo.png", sizes: "152x152" },
-      { url: "/logo.png", sizes: "120x120" },
-      { url: "/logo.png", sizes: "76x76" },
-      { url: "/logo.png", sizes: "60x60" },
-      { url: "/logo.png", sizes: "57x57" },
-      { url: "/logo.png", sizes: "40x40" },
-      { url: "/logo.png", sizes: "32x32" },
-      { url: "/logo.png", sizes: "16x16" },
+      { url: "/logo.webp" },
+      { url: "/logo.webp", sizes: "180x180" },
+      { url: "/logo.webp", sizes: "167x167" },
+      { url: "/logo.webp", sizes: "152x152" },
+      { url: "/logo.webp", sizes: "120x120" },
+      { url: "/logo.webp", sizes: "76x76" },
+      { url: "/logo.webp", sizes: "60x60" },
+      { url: "/logo.webp", sizes: "57x57" },
+      { url: "/logo.webp", sizes: "40x40" },
+      { url: "/logo.webp", sizes: "32x32" },
+      { url: "/logo.webp", sizes: "16x16" },
     ],
   },
   alternates: {
@@ -99,7 +99,7 @@ export default function RootLayout({ children }) {
               publisher: {
                 "@type": "Organization",
                 name: "trustedtek",
-                logo: "https://www.trustedtek.org/logo.png",
+                logo: "https://www.trustedtek.org/logo.webp",
               },
             }),
           }}

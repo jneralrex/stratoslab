@@ -130,7 +130,9 @@ function RegisterForm() {
     "ai-building",
     "web-development",
     "community-management",
-    "web3-marketing"
+    "web3-marketing",
+    "forex",
+    "animation-and-illustration",
   ];
   return (
     <motion.div

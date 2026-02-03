@@ -26,7 +26,7 @@ export default function Home() {
     time: "",
   });
 
-   const courses = [
+  const courses = [
     {
       title: "Social Media Management",
       description: "Master strategy, content, analytics, and engagement on all major platforms.",
@@ -62,6 +62,20 @@ export default function Home() {
       description: "Learn how to grow and retain users for Web3 projects.",
       slug: "web3-marketing",
       image: "/images/courses/marketing.avif",
+    },
+    {
+      title: "Forex",
+      description:
+        "Become proficient in currency trading strategies, market analysis, and risk management.",
+      slug: "forex",
+      image: "/images/courses/forex.avif",
+    },
+    {
+      title: "Animation & Illustration",
+      description:
+        "Learn the art of storytelling through motion graphics, character design, and visual effects.",
+      slug: "animation-and-illustration",
+      image: "/images/courses/animation.avif",
     },
   ];
 
@@ -196,11 +210,11 @@ export default function Home() {
       >
         <div className="flex justify-between items-center text-white  h-16">
           <Image
-            src="/logo-new.png"
+            src="/logo-new.webp"
             alt="Trustedtek lab logo"
             width={30}
             height={30}
-             className="h-auto w-auto ml-4"
+            className="h-auto w-auto ml-4"
 
           />{" "}
           <div className=" flex gap-2 sm:gap-4 justify-evenly items-center w-[80%] sm:w-[80%] lg:w-[70%] text-[8px] sm:text-[14px]">
@@ -239,16 +253,15 @@ export default function Home() {
         </div>
       </nav>
 
-       <button
+      <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-[#4e3c70] text-white border-2 border-white shadow-lg transition-all duration-300 ${
-          conditionalButton === "hidden" ? "hidden" : "block"
-        }`}
+        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-[#4e3c70] text-white border-2 border-white shadow-lg transition-all duration-300 ${conditionalButton === "hidden" ? "hidden" : "block"
+          }`}
         aria-label="Back to Top"
       >
         ↑
       </button>
-      
+
       <div className="h-screen text-white">
         <div className="flex flex-col items-center justify-center h-screen gap-[10px] lg:gap-[50px] p-2 ">
           <h1 className="text-[26px] sm:text-[40px] lg:text-6xl font-extrabold text-center max-w-[1240px] md:p-5 mt-[30px] md:mt-[50px]">
@@ -263,7 +276,7 @@ export default function Home() {
                 <span className="text-[#f5a623]">Enroll Now</span> and start your journey
               </div>
               <div className="flex gap-4">
-                 <Link href="/trustedtek/student" className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[150px]">
+                <Link href="/trustedtek/student" className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[150px]">
                   Explore Classes
                 </Link>
               </div>
@@ -280,14 +293,14 @@ export default function Home() {
           <p className="text-lg text-center max-w-[620px] text-[#b2aeb9] font-bold">
             We offer a variety of courses to help you master new skills and advance your career.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 w-[90%] mx-auto">
             {courses.map((course, index) => (
-              <div key={index} className="bg-[#4e3c70] rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+              <div key={index} className="bg-[#4e3c70] rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-102">
                 <Image src={course.image} alt={course.title} width={400} height={250} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-white mb-2">{course.title}</h3>
                   <p className="text-[#b2aeb9] mb-4">{course.description}</p>
-                  <Link  href={`/trustedtek/student/courses/${course.slug}`} className="text-white font-semibold bg-green-500 py-2 px-4 rounded-md hover:bg-green-600 transition">
+                  <Link href={`/trustedtek/student/courses/${course.slug}`} className="text-white font-semibold bg-green-500 py-2 px-4 rounded-md hover:bg-green-600 transition">
                     Learn More
                   </Link>
                 </div>
@@ -375,8 +388,8 @@ export default function Home() {
             <div
               ref={calendlyRef}
               style={{
-                minHeight: "100%", 
-                height: "100%", 
+                minHeight: "100%",
+                height: "100%",
               }}
             />
           </div>

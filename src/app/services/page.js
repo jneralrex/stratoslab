@@ -238,7 +238,7 @@ export default function Services() {
         <div className="flex justify-between items-center text-white  h-16">
           <Link href="/">
             <Image
-              src="/logo-new.png"
+              src="/logo-new.webp"
               alt="Trustedtek lab logo"
               width={30}
               height={30}
