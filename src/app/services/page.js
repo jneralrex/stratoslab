@@ -294,13 +294,13 @@ export default function Services() {
           </p>
           <div className="flex gap-4">
             <button
-              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px]"
+              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[150px]"
               onClick={() => setCalendlyLoaded(true)}
             >
               <p className="text-white hover:text-white"> Book a Call</p>
             </button>
             <button
-              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px]"
+              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[150px]"
               onClick={() => setContactForm(true)}
             >
               Fill a form
@@ -380,13 +380,13 @@ export default function Services() {
           </p>
           <div className="flex gap-4">
             <button
-              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px]"
+              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[150px]"
               onClick={() => setCalendlyLoaded(true)}
             >
               <p className="text-white hover:text-white"> Book a Call</p>
             </button>
             <button
-              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px]"
+              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[150px]"
               onClick={() => setContactForm(true)}
             >
               Fill a form

@@ -300,7 +300,7 @@ export default function Home() {
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-white mb-2">{course.title}</h3>
                   <p className="text-[#b2aeb9] mb-4">{course.description}</p>
-                  <Link href={`/trustedtek/student/courses/${course.slug}`} className="text-white font-semibold bg-green-500 py-2 px-4 rounded-md hover:bg-green-600 transition">
+                  <Link href={`/trustedtek/student/courses/${course.slug}`} className="text-white font-semibold bg-[#171717] border-2 border-white py-2 px-4 rounded-md hover:bg-black transition">
                     Learn More
                   </Link>
                 </div>
@@ -324,13 +324,13 @@ export default function Home() {
           </p>
           <div className="flex gap-4">
             <button
-              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px]"
+              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[150px]"
               onClick={() => setCalendlyLoaded(true)}
             >
               <p className="text-white hover:text-white"> Book a Call</p>
             </button>
             <button
-              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[100px]"
+              className=" backdrop-blur-lg md:mx-auto  text-white bg-[#171717] rounded-lg p-2 border-2 border-white hover:bg-black hover:border-white transition-all duration-300 max-w-[150px]"
               onClick={() => setContactForm(true)}
             >
               Fill a form
